@@ -1,0 +1,56 @@
+<html>
+<head>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="google" value="notranslate"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+    <style>
+        html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary,time, mark, audio, video {	margin: 0;	padding: 0;	border: 0;	font-size: 100%;	font: inherit;	vertical-align: baseline;}/* HTML5 display-role reset for older browsers */article, aside, details, figcaption, figure, footer, header, menu, nav, section {	display: block;}body {	line-height: 1;}ol, ul {	list-style: none;}blockquote, q {	quotes: none;}blockquote:before, blockquote:after,q:before, q:after {	content: '';	content: none;}table {	border-collapse: collapse;	border-spacing: 0;}
+       #map-view, .building, .floor-map, .svg-map, .tools{
+           position: absolute;
+           top:0;
+           left: 0;
+           fill: #FFFF00;
+       }
+        #map-view h1{
+            position: fixed;
+            font-size: 3em;
+            width: 100px;
+            height: 50px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        .tools *{
+            margin-top: 1em;
+        }
+    </style>
+    <script type="text/javascript" src="libs/jquery-2.1.4.min.js"></script>
+    <title>SVG MAPPING</title>
+</head>
+
+<body>
+
+        <div id="map-view">
+
+        </div>
+<section class="tools">
+    <label data-id="name"></label><br/>
+    <button data-id="save">Save</button><br/>
+    <input  data-id="auto" type="checkbox" /> Auto<br/>
+    <button data-id="next">Next</button>
+</section>
+
+
+<script type="text/javascript" src="libs/underscore-min.js"></script>
+<script type="text/javascript" src="libs/svg.min.js"></script>
+
+<script type="text/javascript" src="libs/Connector.js"></script>
+<script type="text/javascript" src="MappingBuilding.js"></script>
+<script type="text/javascript" src="SVGMapping.js"></script>
+
+
+</body>
+</html>

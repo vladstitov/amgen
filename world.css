@@ -1,0 +1,309 @@
+/** * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/) * http://cssreset.com */
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary,time, mark, audio, video {	margin: 0;	padding: 0;	border: 0;	font-size: 100%;	font: inherit;	vertical-align: baseline;}/* HTML5 display-role reset for older browsers */article, aside, details, figcaption, figure, footer, header, menu, nav, section {	display: block;}body {	line-height: 1;}ol, ul {	list-style: none;}blockquote, q {	quotes: none;}blockquote:before, blockquote:after,q:before, q:after {	content: '';	content: none;}table {	border-collapse: collapse;	border-spacing: 0;}
+@font-face {
+    font-family:ThemeFont;
+    /*src:url('fonts/TradeGothicLTStd-Cn18.otf');*/
+    src:url('/cms/trunk/fonts/Oswald-Light.ttf');
+}
+@font-face {
+    font-family:ThemeFontBold;
+    /*src:url('fonts/TradeGothicLTStd-BdCn20.otf');*/
+    src:url('/cms/trunk/fonts/Oswald-Regular.ttf');
+}
+
+body{
+    -webkit-font-smoothing: antialiased !important;
+    font-size: 1em;
+    -webkit-text-size-adjust: none;
+    background-attachment: fixed;
+    font-family: ThemeFont;
+    height:100%;
+    width:100%;
+}
+
+
+
+#preloader{
+    width: 100%;
+    height: 100%;
+}
+
+#preloader .center{
+    display: inline;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+}
+#map-view{
+    margin-left: 200px;
+}
+#map-view .floor-map{
+    position: absolute;
+    top:0;
+    left:0;
+}
+/*section{
+    position: absolute;
+    top:0;
+    left:0;
+}*/
+#map-view .svg-map{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pin{
+    position: absolute;
+    background-image: url("/cms/trunk/modules/web/css/img/pin-yellow.png");
+    width: 15px;
+    height: 55px;
+   transform:translate(-8px,-50px);
+}
+#list-world-view{
+
+}
+
+/*@media (max-width: 1400px) {
+    .floor-map{
+        -ms-transform: scale(0.8,0.8); /!* IE 9 *!/
+        -webkit-transform: scale(0.8,0.8); /!* Safari *!/
+        transform: scale(0.8,0.8);
+    }
+}*/
+#logo-view{
+    float: right;
+    margin-top: 2em;
+    margin-right: 2em;
+
+}
+#content{
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+}
+#map-mainview>h2{
+    text-align: center;
+    font-size: 2em;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.floor-map>h2{
+    text-align: center;
+    font-size: 2em;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.floor-map .bubble{
+   /* transform:translate(-15px,-75px);*/
+}
+.pin>.bubble{
+    bottom: 60px;
+    left: -25px;
+   /* transform:translate(-25px,-25px);*/
+}
+.pin.selected{
+    z-index: 1000;
+}
+#map-view .bubble{
+    position: absolute;
+    font-size: 1em;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.test-dot{
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: black;
+}
+.bubble>div{
+    width: 100%;
+}
+#building{
+    /*width: 100%;
+    height: 100%;*/
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+.list>a{
+   white-space: nowrap;
+    width: 100%;
+    display: block;
+}
+#side-port, #head-port .breadcrumbs{
+    position: absolute;
+    left: 2%;
+    top: 5%;
+}
+
+#list-world-view{
+    position: absolute;
+    top:1em;
+/*
+width: 10em;
+*/
+
+}
+#list-world-view .list{
+    width: 12em;
+
+}
+
+.list-container{
+    width: 12em;
+    height: 20em;
+}
+
+.list-container li{
+    margin-top: 0.5em;
+
+}
+.list-container li>a{
+    text-transform: capitalize;
+
+}
+#list-world-view .region{
+
+    margin-bottom: 0.7em;
+ /*   margin-left: 1em;*/
+}
+#head-port .breadcrumbs a{
+    margin: 0.4em;
+
+}
+#head-port .breadcrumbs a:first-child{
+    margin-left: 0;
+}
+#list-campus-view .breadcrumbs a{
+    margin: 0.2em;
+}
+#list-campus-view .breadcrumbs a:first-child{
+    margin-left: 0;
+}
+
+/*              THEME          */
+body{
+    color: #333;
+    background-color: #011326;
+}
+.svg-map polygon{
+  /*  fill:#90F53F !important;*/
+
+    fill:#f3c108 !important
+}
+h2{
+    color: white;
+}
+.bubble{
+    background-color: #FFFFFF;
+
+}
+#list-world-view h3{
+    color: #00acd7;
+    font-family: ThemeFontBold;
+}
+.breadcrumbs{
+    color: #00acd7;
+    font-family: ThemeFontBold;
+}
+.breadcrumbs .selected{
+    color: #f3c108 ;
+    text-decoration: none !important;
+
+}
+#list-campus-view .breadcrumbs a{
+    text-decoration: underline;
+}
+.list-container{
+    color: white;
+}
+.list-container .selected{
+    color:  #f3c108 ;
+
+}
+#preloader{
+    background-color: rgba(50,50,50,0.5);
+}
+#preloader .center{
+    color: #DDDDDD;
+    font-size: 4em;
+}
+#head-port .breadcrumbs{
+    text-shadow: 2px 2px #011326;
+}
+
+.nano-slider{
+    background-color:#809ab4 !important;
+}
+hr{
+    height: 1px;
+    background-color:#809ab4;
+    border-color:#809ab4;
+
+}
+
+h2{
+   font-family: ThemeFontBold;
+}
+
+
+.zoom4, .zoom5, .zoom6{
+    transform-origin: 0 0;
+    transform: matrix(0.7, 0, -0.15, 0.5, 0, 0);
+}
+.zoom7, .zoom8, .zoom9{
+    transform-origin: 0 0;
+    transform: matrix(0.7, 0, 0, 0.7, 0, 0);
+}
+.zoom10, .zoom11, .zoom12, .zoom13,{
+    transform-origin: 0 0;
+    transform: matrix(0.95, 0, 0, 0.95, 0, 0);
+}
+
+.zoom4 .pin, .zoom5  .pin, .zoom6  .pin{
+    transform-origin: 0 0;
+    transform: matrix(1, 0, 0.35, 1.3, -20, -70);
+}
+/*.zoom7, .zoom8, .zoom9{
+    transform-origin: 0 0;
+    transform: matrix(0.7, 0, 0, 0.7, 0, 0);
+}*/
+
+ .zoom10 .bubble, .zoom11 .bubble, .zoom12 .bubble, .zoom13 .bubble{
+    transform: matrix(0.65, 0, 0, 0.75, 10, 10);
+}
+.zoom3{
+
+}
+
+#building, .pin {
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+}
+
+.transform {
+    transform: matrix(-0.668, -0.669, -0.602, 0.743, 737.944, 185.233);
+    -webkit-transform: matrix(-0.668, -0.669, -0.602, 0.743, 737.944, 185.233);
+    -moz-transform: matrix(-0.668, -0.669, -0.602, 0.743, 737.944, 185.233);
+}

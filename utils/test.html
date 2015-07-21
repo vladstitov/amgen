@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../mapping/libs/jquery-2.1.4.min.js"></script>
+    <link type="text/css" href="../mapping/libs/bootstrap.css" />
+    <script type="text/javascript" src="test.js"></script>
+    <title></title>
+    <style>
+        #view{
+            position: absolute;
+            left: 300px;
+            top: 100px;
+
+        }
+        #building_c{
+            position: absolute;
+            left: 200px;
+            top: 300px;
+            width: 1000px;
+            height: 1000px;
+        }
+
+        #building{
+            position: absolute;
+            top:0px;
+            left: 0px;
+            width: 1000px;
+            height: 1000px;
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+        }
+        #building .floor{
+            position: absolute;           
+            left:-200px;
+            top:-300px;
+            width: 1000px;
+            height: 1000px;
+        }
+        #overlay{
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+        #tools{
+            position: absolute;
+            left: 10px;
+            top: 100px;
+        }
+        .dot{
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background-color: black;
+            border-radius: 50% 50%;
+            white-space: nowrap;
+        }
+        #building, .dot {
+            transition: all 0.5s ease-in-out;
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="view">
+<div id="building_c">
+    <div id="building">
+        <div  class="floor">
+           <img src="Ppath.png" />
+        </div>
+    </div>
+    <div id="overlay"></div>
+</div>
+</div>
+<div id="tools"> S <input data-id="scale" type="range" step="5"><br/> R <input data-id="rotate" type="range" step="5"><br/> L <input data-id="lay" type="range" step="5"><br/>
+</div>
+</body>
+</html>

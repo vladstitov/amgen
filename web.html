@@ -1,0 +1,73 @@
+<html>
+	<head>
+
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta name="google" value="notranslate"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+
+
+        <link rel="stylesheet" href="/cms/trunk/css/nanoscroller.css" />
+        <link rel="stylesheet" href="/cms/trunk/css/stylesWEB.css" />
+        <script>
+
+             var debugDevice ;//= {deviceId:"735", languageCode:"en"};
+//var debugDevice = {deviceId:"262", languageCode:"en"};
+
+            var CONTEXTROOT = '/cms/trunk';
+            var DeviceTypeDir = '/modules/web';
+        var modules = [
+          //  {name:"Labels", url:CONTEXTROOT + DeviceTypeDir + "/labels/labels.html", init:"initLabels", parent:"#Moduls"},
+            {name:"KioskMaps", url:CONTEXTROOT + DeviceTypeDir + "/maps/vect/vectorMaps.html", init:"initKioskMaps", parent:"#Moduls"},
+            {name:"FloorPicker", url:CONTEXTROOT + DeviceTypeDir + "/floorPicker/floorPicker.html", init:"initFloorPicker", parent:"#Moduls"},
+            {name:"DestinationsList", url:CONTEXTROOT + DeviceTypeDir + "/destinations/destinationsList.html", init:"initDestinations", parent:"#Moduls"},
+            {name:"Tracking", url:CONTEXTROOT + DeviceTypeDir + "/tracking/novomapTracking.html", init:"initNMTracking", parent:"#Moduls"}
+            ];
+
+           var  globalDispatcher = {};
+        </script>
+
+		<title>AMGEN</title>
+		
+	</head>
+	<body>
+            <section id="loadingScreen" >
+                <div class='loadingBG' labelImgId='loadingBG' ></div>
+                <div id="loadingMessage">
+                    <img labelImgId='LoadingLogo' />
+                    <div class='loaderAnim' labelImgId='LoadingAnim' ></div>
+                    <div id="loadMessageText" labelId='LoadingScreenTxt' data-color='webcolor2' >
+                        Loading...
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-wrapper" labelImgId="kiosk-bodyBackground">
+
+                <div id="page-canvas">
+                    <section id="Moduls">
+
+                    </section>
+                </div>
+
+                <div id='circleBGbox' ></div>
+                <div id='cover' ></div>
+
+            </section>
+
+            <script type="text/javascript" src="/cms/trunk/libs/jquery-2.1.4.min.js"></script>
+            <script type="text/javascript" src="/cms/trunk/libs/underscore-min.js"></script>
+            <script type="text/javascript" src="/cms/trunk/libs/backbone-min.js"></script>
+            <script type="text/javascript" src="/cms/trunk/libs/jquery.nanoscroller.min.js"></script>
+            <script type="text/javascript" src="/cms/trunk/libs/TweenMax.min.js"></script>
+
+            <script type="text/javascript" src="/cms/trunk/modules/web/maps/vect/path/ModelBuilding.js"></script>
+            <script type="text/javascript" src="/cms/trunk/modules/web/maps/vect/path/Floor.js"></script>
+            <script type="text/javascript" src="/cms/trunk/modules/web/maps/vect/path/Building.js"></script>
+            <script type="text/javascript" src="/cms/trunk/modules/web/destinations/destinationsInit.js"></script>
+            <script type="text/javascript" src="/cms/trunk/modules/web/destinations/DestinationsList.js"></script>
+            <script type="text/javascript" src="/cms/trunk/modules/web/utils/WebTemplate.js"></script>
+           <script type="text/javascript" src="/cms/trunk/modules/web/utils/NovoMap-V3.js"></script>
+            <script type="text/javascript" src="/cms/trunk/modules/web/WebApp.js"></script>
+            <script type="text/javascript" src="/cms/trunk/modules/web/Novoscript.js"></script>
+    </body>
+</html>
