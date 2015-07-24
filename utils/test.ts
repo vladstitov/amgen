@@ -8,17 +8,18 @@ class Test{
 
     private onFloorClick(evt:JQueryEventObject):void{
         console.log(evt);
-        this.c.setDelta(evt.offsetX,evt.offsetY);
+       // this.c.setDelta(evt.offsetX,evt.offsetY);
         this.c.refreshDots();
     }
     constructor(){
         var tools= $('#tools');
 
         var c = new Container($('#building_c'));
-        c.setAxis( new Axis($('#Axis')));
+        c.addAxis( new Axis($('#Axis')));
+        c.addAxis( new Axis($('#Axis2')));
         this.c=c;
 
-        var b:Axis = this.c.getAxis();
+        var b:Axis = this.c.getAxis(0);
 
         var dots:Dot[]=[]
       //  var dot = new Dot(' dot 100x100',new Point(100,100));
@@ -40,6 +41,7 @@ class Test{
         for (var i = 0, n = ar.length; i < n; i++) ar[i].setMatrix(b.m);
         c.setDots(dots);
       // c.setOffset(500,500);
+        c.setDelta(0,100,0);
         c.setCenter(500,500);
         c.refreshDots();
         var that=this;
@@ -69,6 +71,7 @@ class Test{
 
 class Container{
     b:Axis;
+    axs:Axis[]=[];
     dots:Dot[];
     offsetx:number=0;
     offsety:number=0;
@@ -82,27 +85,34 @@ class Container{
         }
     }
     rotate(v:number){
-        this.b.rotate(v);
+       // this.b.rotate(v);
+        var ar =this.axs
+        for (var i = 0, n = ar.length; i < n; i++)   ar[i].rotate(v);
         this.refreshDots();
     }
     scale(v:number):void{
-        this.b.scale(v);
+        var ar =this.axs
+        for (var i = 0, n = ar.length; i < n; i++)   ar[i].scale(v);
+        //this.b.scale(v);
         this.refreshDots();
     }
     skew(v:number):void{
-        this.b.skew(v);
+        var ar =this.axs
+        for (var i = 0, n = ar.length; i < n; i++)   ar[i].skew(v);
+       // this.b.skew(v);
         this.refreshDots();
     }
-    setAxis(b:Axis):void{
+    addAxis(b:Axis):void{
         this.b=b;
+        this.axs.push(b);
     }
 
-    getAxis():Axis{
-        return this.b;
+    getAxis(i:number):Axis{
+        return this.axs[i];
     }
 
-    setDelta(x:number,y:number):void{
-        this.b.setDelta(x,y);
+    setDelta(x:number,y:number,i:number):void{
+        this.axs[i].setDelta(x,y);
     }
     setCenter(x:number,y:number):void{
         var ar:Dot[] = this.dots;
@@ -110,8 +120,11 @@ class Container{
         this.view.css('left',x+'px').css('top',y+'px');
         this.offsetx=x;
         this.offsety=y;
-        this.b.setCenter(0-x,0-y);
-        for (var i = 0, n = ar.length; i < n; i++)  ar[i].setCenter(0-x,0-y);
+
+        for (var i = 0, n = ar.length; i < n; i++)   ar[i].setCenter(0-x,0-y);
+       // this.b.setCenter(0-x,0-y);
+        var ar2 =this.axs
+        for (var i = 0, n = ar2.length; i < n; i++)  ar2[i].setCenter(0-x,0-y);
     }
 
     setDots(d:Dot[]):void{

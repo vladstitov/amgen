@@ -7,9 +7,10 @@ var Test = (function () {
         var _this = this;
         var tools = $('#tools');
         var c = new Container($('#building_c'));
-        c.setAxis(new Axis($('#Axis')));
+        c.addAxis(new Axis($('#Axis')));
+        c.addAxis(new Axis($('#Axis2')));
         this.c = c;
-        var b = this.c.getAxis();
+        var b = this.c.getAxis(0);
         var dots = [];
         //  var dot = new Dot(' dot 100x100',new Point(100,100));
         // dot.offset(-200,-300);
@@ -27,6 +28,7 @@ var Test = (function () {
             ar[i].setMatrix(b.m);
         c.setDots(dots);
         // c.setOffset(500,500);
+        c.setDelta(0, 100, 0);
         c.setCenter(500, 500);
         c.refreshDots();
         var that = this;
@@ -51,7 +53,7 @@ var Test = (function () {
     }
     Test.prototype.onFloorClick = function (evt) {
         console.log(evt);
-        this.c.setDelta(evt.offsetX, evt.offsetY);
+        // this.c.setDelta(evt.offsetX,evt.offsetY);
         this.c.refreshDots();
     };
     return Test;
@@ -60,6 +62,7 @@ var Container = (function () {
     function Container(view) {
         // view.on('click',(evt)=>this.onClick(evt));
         this.view = view;
+        this.axs = [];
         this.offsetx = 0;
         this.offsety = 0;
     }
@@ -71,25 +74,35 @@ var Container = (function () {
         }
     };
     Container.prototype.rotate = function (v) {
-        this.b.rotate(v);
+        // this.b.rotate(v);
+        var ar = this.axs;
+        for (var i = 0, n = ar.length; i < n; i++)
+            ar[i].rotate(v);
         this.refreshDots();
     };
     Container.prototype.scale = function (v) {
-        this.b.scale(v);
+        var ar = this.axs;
+        for (var i = 0, n = ar.length; i < n; i++)
+            ar[i].scale(v);
+        //this.b.scale(v);
         this.refreshDots();
     };
     Container.prototype.skew = function (v) {
-        this.b.skew(v);
+        var ar = this.axs;
+        for (var i = 0, n = ar.length; i < n; i++)
+            ar[i].skew(v);
+        // this.b.skew(v);
         this.refreshDots();
     };
-    Container.prototype.setAxis = function (b) {
+    Container.prototype.addAxis = function (b) {
         this.b = b;
+        this.axs.push(b);
     };
-    Container.prototype.getAxis = function () {
-        return this.b;
+    Container.prototype.getAxis = function (i) {
+        return this.axs[i];
     };
-    Container.prototype.setDelta = function (x, y) {
-        this.b.setDelta(x, y);
+    Container.prototype.setDelta = function (x, y, i) {
+        this.axs[i].setDelta(x, y);
     };
     Container.prototype.setCenter = function (x, y) {
         var ar = this.dots;
@@ -97,9 +110,12 @@ var Container = (function () {
         this.view.css('left', x + 'px').css('top', y + 'px');
         this.offsetx = x;
         this.offsety = y;
-        this.b.setCenter(0 - x, 0 - y);
         for (var i = 0, n = ar.length; i < n; i++)
             ar[i].setCenter(0 - x, 0 - y);
+        // this.b.setCenter(0-x,0-y);
+        var ar2 = this.axs;
+        for (var i = 0, n = ar2.length; i < n; i++)
+            ar2[i].setCenter(0 - x, 0 - y);
     };
     Container.prototype.setDots = function (d) {
         this.dots = d;
