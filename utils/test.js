@@ -10,12 +10,16 @@ var Test = (function () {
         c.addAxis(new Axis($('#Axis')));
         c.addAxis(new Axis($('#Axis2')));
         this.c = c;
-        var b = this.c.getAxis(0);
+        var b = this.c.getAxis(1);
         var dots = [];
         //  var dot = new Dot(' dot 100x100',new Point(100,100));
         // dot.offset(-200,-300);
         b.getFloor().on('click', function (evt) { return _this.onFloorClick(evt); });
-        // dot.setPos(b.transformPoint(dot.p));
+        for (var i = 0, n = 300; i < n; i++) {
+            var x = Math.random() * 800;
+            var y = Math.random() * 800;
+            dots.push(new Dot(' dot ' + x + 'x' + y, new Point(x, y)));
+        }
         dots.push(new Dot(' dot 100x100', new Point(100, 100)));
         dots.push(new Dot('dot 800x800', new Point(800, 800)));
         dots.push(new Dot('dot 100x800', new Point(100, 800)));
@@ -28,15 +32,16 @@ var Test = (function () {
             ar[i].setMatrix(b.m);
         c.setDots(dots);
         // c.setOffset(500,500);
-        c.setDelta(0, 100, 0);
-        c.setCenter(500, 500);
+        // c.setDelta(0,100,0);
+        c.setDelta(0, 0, 0);
+        c.setCenter(450, 450);
         c.refreshDots();
         var that = this;
-        var rotate = tools.find('[data-id=rotate]:first').on('input', function () {
+        var rotate = tools.find('[data-id=rotate]:first').on('change', function () {
             var v = ((rotate.val() - 50) / 50);
             c.rotate(v);
         });
-        var scale = tools.find('[data-id=scale]:first').on('input', function () {
+        var scale = tools.find('[data-id=scale]:first').on('change', function () {
             //  console.log( scale.val());
             var v = ((scale.val()) / 50);
             if (v < 0.2)
@@ -44,8 +49,10 @@ var Test = (function () {
             c.scale(v);
             // that.refreshDots();
         });
-        var skew = tools.find('[data-id=lay]:first').on('input', function () {
+        var skew = tools.find('[data-id=lay]:first').on('change', function () {
             var v = (skew.val() - 50) / 50;
+            console.log(v);
+            c.setDelta(0, v * 200, 0);
             c.skew(v);
             // c.refreshDots();
         });
@@ -149,7 +156,8 @@ var Dot = (function () {
         this.c_y = y;
     };
     Dot.prototype.setPos = function (p) {
-        this.view.css({ left: p.x, top: p.y });
+        // this.view.css({left:p.x,top:p.y});
+        this.view.css('transform', 'translate(' + p.x + 'px,' + p.y + 'px)');
     };
     return Dot;
 })();
