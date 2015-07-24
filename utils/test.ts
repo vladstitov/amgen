@@ -8,20 +8,20 @@ class Test{
 
     private onFloorClick(evt:JQueryEventObject):void{
         console.log(evt);
-        this.c.setOffset(evt.offsetX,evt.offsetY);
+        this.c.setDelta(evt.offsetX,evt.offsetY);
         this.c.refreshDots();
     }
     constructor(){
         var tools= $('#tools');
 
         var c = new Container($('#building_c'));
-        c.setBuilding( new Building($('#building')));
+        c.setAxis( new Axis($('#Axis')));
         this.c=c;
 
-        var b:Building = this.c.getBuilding();
+        var b:Axis = this.c.getAxis();
 
         var dots:Dot[]=[]
-        var dot = new Dot(' dot 100x100',new Point(100,100));
+      //  var dot = new Dot(' dot 100x100',new Point(100,100));
 
        // dot.offset(-200,-300);
 
@@ -39,7 +39,8 @@ class Test{
         var ar =dots
         for (var i = 0, n = ar.length; i < n; i++) ar[i].setMatrix(b.m);
         c.setDots(dots);
-        c.setOffset(500,500);
+      // c.setOffset(500,500);
+        c.setCenter(500,500);
         c.refreshDots();
         var that=this;
 
@@ -57,12 +58,17 @@ class Test{
            // that.refreshDots();
         })
 
+        var skew = tools.find('[data-id=lay]:first').on('input',function(){
+           var v= (skew.val()-50)/50;
+           c.skew(v);
+           // c.refreshDots();
+        })
         console.log(rotate);
     }
 }
 
 class Container{
-    b:Building;
+    b:Axis;
     dots:Dot[];
     offsetx:number=0;
     offsety:number=0;
@@ -83,22 +89,29 @@ class Container{
         this.b.scale(v);
         this.refreshDots();
     }
-    setBuilding(b:Building):void{
+    skew(v:number):void{
+        this.b.skew(v);
+        this.refreshDots();
+    }
+    setAxis(b:Axis):void{
         this.b=b;
     }
-    getBuilding():Building{
+
+    getAxis():Axis{
         return this.b;
     }
-    setOffset(x:number,y:number):void{
+
+    setDelta(x:number,y:number):void{
+        this.b.setDelta(x,y);
+    }
+    setCenter(x:number,y:number):void{
         var ar:Dot[] = this.dots;
       //  this.view.css('left',x+'px').css('top',y+'px');
-
         this.view.css('left',x+'px').css('top',y+'px');
         this.offsetx=x;
         this.offsety=y;
-        this.b.setoOffset(0-x,0-y);
-        for (var i = 0, n = ar.length; i < n; i++)  ar[i].offset(0-x,0-y);
-
+        this.b.setCenter(0-x,0-y);
+        for (var i = 0, n = ar.length; i < n; i++)  ar[i].setCenter(0-x,0-y);
     }
 
     setDots(d:Dot[]):void{
@@ -124,24 +137,24 @@ class Container{
 class Dot{
     view:JQuery;
     m:Matrix;
-    offx:number;
-    offy:number;
+    c_x:number;
+    c_y:number;
 
     constructor(label:string,public p:Point){
         this.view=$('<div>').html(label).addClass('dot');
         this.setPos(p);
     }
     refresh(){
-        this.setPos(this.m.transformPoint(this.p.x+this.offx,this.p.y+this.offy));
+        this.setPos(this.m.transformPoint((this.p.x+this.c_x),(this.p.y+this.c_y)));
     }
     setMatrix(m:Matrix):void{
         this.m=m;
     }
-    offset(x:number,y:number):void{
+    setCenter(x:number,y:number):void{
        // this.p.x+=x;
        // this.p.y+=y;
-        this.offx=x;
-        this.offy=y;
+        this.c_x=x;
+        this.c_y=y;
     }
     setPos(p:Point):void{
     this.view.css({left:p.x,top:p.y});
@@ -149,27 +162,28 @@ class Dot{
 }
 
 
-class Building{
+class Axis{
     m:Matrix
     r:number=0;
     s:number=1;
     floor:JQuery;
-    offsetx:number;
-    offsety:number;
+    //offsetx:number;
+    //offsety:number;
 
 
     getFloor():JQuery{
         return this.floor;
     }
     constructor(private view:JQuery){
+        $('<div>').addClass('zero').appendTo(view);
         this.m= new Matrix(1,0,0,1,0,0);
        this.apply();
         this.floor = view.find('.floor:first');
     }
 
-    setoOffset(x:number,y:number){
-        this.offsetx=x;
-        this.offsety=y;
+    setCenter(x:number,y:number){
+        //this.offsetx=x;
+       // this.offsety=y;
        this.floor.css('left',x+'px').css('top',y+'px');
     }
     cloneM():Matrix{
@@ -179,7 +193,22 @@ class Building{
       return this.m.transformPoint(p.x,p.y);
     }
 
-
+    setDelta(x:number,y:number):void{
+        var m:Matrix= this.m;
+        m.tx=x;
+        m.ty=y;
+        this.apply();
+    }
+    skew(v):void{
+        var sx:number =   -v
+        var m:Matrix= this.m;
+        console.log(sx);
+       var sc = (1-Math.abs(v));
+        console.log(sc);
+        m.c=sx;
+        m.d=sc;
+        this.apply();
+    }
 
     rotate(ang:number){
        // console.log('rotate '+(ang)+ ' now '+ this.r);

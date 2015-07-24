@@ -10,7 +10,7 @@
         #view{
             position: absolute;
             left: 300px;
-            top: 100px;
+            top: 0px;
 
         }
         #building_c{
@@ -21,7 +21,7 @@
             height: 1000px;
         }
 
-        #building{
+        #Axis{
             position: absolute;
             top:0px;
             left: 0px;
@@ -30,7 +30,17 @@
             transform-origin: 0 0;
             -webkit-transform-origin: 0 0;
         }
-        #building .floor{
+        #Axis .zero{
+            width: 6px;
+            height: 6px;
+            background-color: #770088;
+            border-radius: 5px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform:translate(-3px -3px);
+        }
+        #Axis .floor{
             position: absolute;           
             left:-200px;
             top:-300px;
@@ -55,7 +65,7 @@
             border-radius: 50% 50%;
             white-space: nowrap;
         }
-        #building, .dot {
+        #Axis, .dot {
             transition: all 0.5s ease-in-out;
             -webkit-transition: all 0.5s ease-in-out;
             -moz-transition: all 0.5s ease-in-out;
@@ -68,9 +78,9 @@
 <body>
 <div id="view">
 <div id="building_c">
-    <div id="building">
+    <div id="Axis">
         <div  class="floor">
-           <img src="Ppath.png" />
+           <img src="Ppath2.png" />
         </div>
     </div>
     <div id="overlay"></div>
