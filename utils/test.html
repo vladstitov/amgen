@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
 
     <script type="text/javascript" src="../libs/jquery-2.1.4.min.js"></script>
-    <!--<script type="text/javascript" src="../libs/jquery.mobile-1.4.5.min.js"></script>-->
+    <script type="text/javascript" src="../libs/svg.min.js"></script>
     <!--<link type="text/css" href="../libs/bootstrap.css" />-->
+
   <!--  <link type="text/css" href="../libs/jquery.mobile-1.4.5.min.css" />s-->
    <script type="text/javascript" src="test.js"></script>
 
@@ -52,7 +53,7 @@
             height: 1000px;
         }
 
-        #overlay{
+        #overlay,  #overlay>*{
             position: absolute;
             top:0;
             left: 0;
@@ -69,6 +70,13 @@
             background-color: black;
             border-radius: 50% 50%;
             white-space: nowrap;
+        }
+        .dot.colide{
+            color: red;
+        }
+        .dot>div{
+            display: inline-block;
+            border: thin black solid;
         }
         .axis, .dot {
             transition: all 0.5s ease-in-out;
@@ -101,8 +109,15 @@
     <div id="overlay"></div>
 </div>
 </div>
-<div id="tools"> S
+<div id="tools">
+    <div>
+        <label for="chkAll">Show All</label>
+<input type="checkbox" data-id="chkAll" id="chkAll"/>
+    </div>
+    <div>
+    S
     <input ori id="slider-1" class="vertical" name="slider-1" data-id="scale" type="range" min="0"  max="100" value="50" step="1" /> R <input class="vertical" data-id="rotate" type="range"  min="0"  max="100" value="50" step="1"> L <input class="vertical" data-id="lay" type="range"  min="0"  max="100" value="50" step="1"><br/>
-</div>
+    </div>
+    </div>
 </body>
 </html>

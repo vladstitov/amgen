@@ -2,171 +2,286 @@
  * Created by Vlad on 7/15/2015.
  */
     ///<reference path="../libs/typings/jquery.d.ts" />
-class Test{
-    c:Container;
+    ///<reference path="../libs/typings/svgjs.d.ts" />
+    class Test{
+        c:Container;
 
+        chkAll:JQuery
 
-    private onFloorClick(evt:JQueryEventObject):void{
-        console.log(evt);
-       // this.c.setDelta(evt.offsetX,evt.offsetY);
-        this.c.refreshDots();
-    }
-    constructor(){
-        var tools= $('#tools');
-
-        var c = new Container($('#building_c'));
-        c.addAxis( new Axis($('#Axis')));
-        c.addAxis( new Axis($('#Axis2')));
-        this.c=c;
-
-        var b:Axis = this.c.getAxis(1);
-
-        var dots:Dot[]=[]
-      //  var dot = new Dot(' dot 100x100',new Point(100,100));
-
-       // dot.offset(-200,-300);
-
-        b.getFloor().on('click',(evt)=>this.onFloorClick(evt));
-
-       // dot.setPos(b.transformPoint(dot.p));
-
-
-        for (var i = 0, n = 300; i < n; i++) {
-            var x= Math.random()*800;
-            var y = Math.random()*800;
-            dots.push(new Dot(' dot x:'+x+' y:'+y,new Point(x,y)));
+        private onFloorClick(evt:JQueryEventObject):void{
+            console.log(evt);
+           // this.c.setDelta(evt.offsetX,evt.offsetY);
+            this.c.refreshDots();
         }
-        dots.push(new Dot(' dot 100x100',new Point(100,100)));
-        dots.push(new Dot('dot 800x800',new Point(800,800)));
-        dots.push(new Dot('dot 100x800',new Point(100,800)));
-        dots.push(new Dot('dot 800x100',new Point(800,100)));
-       // dots.push(new Dot('dot000 2',b.transformPoint(new Point(100-200,100-300))));
-        //dots.push(new Dot('dot000 3',b.transformPoint(new Point(100-200,800-300))));
-       // dots.push(new Dot('dot000 4',b.transformPoint(new Point(800-200,100-300))));
 
-        var ar =dots
-        for (var i = 0, n = ar.length; i < n; i++) ar[i].setMatrix(b.m);
-        c.setDots(dots);
-      // c.setOffset(500,500);
-       // c.setDelta(0,100,0);
-        c.setDelta(0,0,0);
-        c.setCenter(450,450);
-        c.refreshDots();
-        var that=this;
 
-        var rotate= tools.find('[data-id=rotate]:first').on('change',function(){
-            var v = ((rotate.val()-50)/50);
-            c.rotate(v);
+        private showDots(isAll:boolean):void{
+           // var ar =this.
+          //  for (var i = 0, n = ar.length; i < n; i++) {
+            //    var vo = ar[i];
 
-        })
+           // }
+        }
+        private onCheckAllChange():void{
+           // console.log(this.chkAll.prop('checked'));
+            this.c.checkForCollision();
+            this.showDots(this.chkAll.prop('checked'));
+        }
+        constructor(){
+            var tools= $('#tools');
+            this.chkAll = $('#chkAll').on('change',()=>this.onCheckAllChange())
+            var c = new Container($('#building_c'));
+            c.addAxis( new Axis($('#Axis')));
+            c.addAxis( new Axis($('#Axis2')));
+            this.c=c;
 
-        var scale =  tools.find('[data-id=scale]:first').on('change',function(){
-          //  console.log( scale.val());
-            var v =  ((scale.val())/50);
-            if(v<0.2) v=0.2;
-            c.scale(v);
-           // that.refreshDots();
-        })
+            var b:Axis = this.c.getAxis(1);
 
-        var skew = tools.find('[data-id=lay]:first').on('change',function(){
-           var v= (skew.val()-50)/50;
+            var dots:Dot[]=[]
+          //  var dot = new Dot(' dot 100x100',new Point(100,100));
 
-console.log(v);
-            c.setDelta(0,v*200,0);
-           c.skew(v);
-           // c.refreshDots();
-        })
-        console.log(rotate);
-    }
-}
+           // dot.offset(-200,-300);
 
-class Container{
-    b:Axis;
-    axs:Axis[]=[];
-    dots:Dot[];
-    offsetx:number=0;
-    offsety:number=0;
+            b.getFloor().on('click',(evt)=>this.onFloorClick(evt));
 
-    refreshDots(){
-      //  var m=this.b.m;
-        var ar =this.dots
-        for (var i = 0, n = ar.length; i < n; i++) {
-             ar[i].refresh();
-            //dot.setPos(m.transformPoint(dot.p.x,dot.p.y));
+           // dot.setPos(b.transformPoint(dot.p));
+            var pozs=[{"x":215.17145447432995,"y":212.76172678917646},{"x":56.142378225922585,"y":265.20573887974024},{"x":730.9521438553929,"y":608.140772394836},{"x":782.8789498656988,"y":177.1478684619069},{"x":381.6274179145694,"y":589.02433142066},{"x":21.496057510375977,"y":325.3415632992983},{"x":98.4149869531393,"y":77.45092883706093},{"x":295.6329019740224,"y":628.1002461910248},{"x":514.7975726053119,"y":325.2354299649596},{"x":73.39946758002043,"y":87.24315669387579},{"x":3.154577501118183,"y":7.934784330427647},{"x":661.1742189154029,"y":87.06492688506842},{"x":283.5581509396434,"y":558.9896366000175},{"x":166.29401128739119,"y":657.5469741597772},{"x":363.0776338279247,"y":0.2620251849293709},{"x":721.845443174243,"y":346.03761434555054},{"x":768.4383545070887,"y":535.2868840098381},{"x":79.52180933207273,"y":231.59336410462856},{"x":421.9799358397722,"y":230.70451095700264},{"x":449.42026175558567,"y":599.0188645198941},{"x":296.1183352395892,"y":775.3022788092494},{"x":213.69051281362772,"y":137.29318529367447},{"x":242.2224096953869,"y":718.5798559337854},{"x":47.82835468649864,"y":121.1811589077115},{"x":74.13299195468426,"y":436.66759207844734},{"x":158.99365041404963,"y":208.4112834185362},{"x":87.66234237700701,"y":543.5546413064003},{"x":95.03505080938339,"y":771.7841187492013},{"x":771.6460132971406,"y":136.81608345359564},{"x":392.01107304543257,"y":676.8729563802481}];
+
+
+            for (var i = 0, n = pozs.length; i < n; i++) {
+                var x= pozs[i].x;//Math.random()*800;
+                var y = pozs[i].y;// Math.random()*800;
+              //  pozs.push({x:x,y:y});
+
+                dots.push(new Dot(i,'D'+i+' x:'+x+' y:'+y,new Point(x,y)));
+            }
+
+           // dots.push(new Dot(' dot 100x100',new Point(100,100)));
+           // dots.push(new Dot('dot 800x800',new Point(800,800)));
+            //dots.push(new Dot('dot 100x800',new Point(100,800)));
+            //dots.push(new Dot('dot 800x100',new Point(800,100)));
+           // dots.push(new Dot('dot000 2',b.transformPoint(new Point(100-200,100-300))));
+            //dots.push(new Dot('dot000 3',b.transformPoint(new Point(100-200,800-300))));
+           // dots.push(new Dot('dot000 4',b.transformPoint(new Point(800-200,100-300))));
+
+            var ar =dots
+            for (var i = 0, n = ar.length; i < n; i++){
+                ar[i].setMatrix(b.m);
+
+            }
+            c.setDots(dots);
+          // c.setOffset(500,500);
+           // c.setDelta(0,100,0);
+            c.setDelta(0,0,0);
+            c.setCenter(450,450);
+            c.refreshDots();
+            var that=this;
+
+            var rotate= tools.find('[data-id=rotate]:first').on('change',function(){
+                var v = ((rotate.val()-50)/50);
+                c.rotate(v);
+
+            })
+
+            var scale =  tools.find('[data-id=scale]:first').on('change',function(){
+              //  console.log( scale.val());
+                var v =  ((scale.val())/50);
+                if(v<0.2) v=0.2;
+                c.scale(v);
+               // that.refreshDots();
+            })
+
+            var skew = tools.find('[data-id=lay]:first').on('change',function(){
+               var v= (skew.val()-50)/50;
+
+    //console.log(v);
+                c.setDelta(0,v*200,0);
+               c.skew(v);
+               // c.refreshDots();
+            })
+            console.log(rotate);
         }
     }
-    rotate(v:number){
-       // this.b.rotate(v);
-        var ar =this.axs
-        for (var i = 0, n = ar.length; i < n; i++)   ar[i].rotate(v);
-        this.refreshDots();
-    }
-    scale(v:number):void{
-        var ar =this.axs
-        for (var i = 0, n = ar.length; i < n; i++)   ar[i].scale(v);
-        //this.b.scale(v);
-        this.refreshDots();
-    }
-    skew(v:number):void{
-        var ar =this.axs
-        for (var i = 0, n = ar.length; i < n; i++)   ar[i].skew(v);
-       // this.b.skew(v);
-        this.refreshDots();
-    }
-    addAxis(b:Axis):void{
-        this.b=b;
-        this.axs.push(b);
+
+    class Container{
+        b:Axis;
+        axs:Axis[]=[];
+        dots:Dot[];
+        offsetx:number=0;
+        offsety:number=0;
+
+        refreshDots(){
+          //  var m=this.b.m;
+            var ar =this.dots
+            for (var i = 0, n = ar.length; i < n; i++)  ar[i].resetHit();
+            for (var i = 0, n = ar.length; i < n; i++)    ar[i].refresh();
+                //dot.setPos(m.transformPoint(dot.p.x,dot.p.y));
+
+        }
+
+        checkForCollision():void{
+            var ar =this.dots
+            for (var i = 0, n = ar.length; i < n; i++)    ar[i].checkCollision();
+
+        }
+
+        rotate(v:number){
+           // this.b.rotate(v);
+            var ar =this.axs
+            for (var i = 0, n = ar.length; i < n; i++)   ar[i].rotate(v);
+            this.refreshDots();
+        }
+
+        scale(v:number):void{
+            var ar =this.axs
+            for (var i = 0, n = ar.length; i < n; i++)   ar[i].scale(v);
+            //this.b.scale(v);
+            this.refreshDots();
+        }
+
+        skew(v:number):void{
+            var ar =this.axs
+            for (var i = 0, n = ar.length; i < n; i++)   ar[i].skew(v);
+           // this.b.skew(v);
+            this.refreshDots();
+        }
+
+        addAxis(b:Axis):void{
+            this.b=b;
+            this.axs.push(b);
+        }
+
+        getAxis(i:number):Axis{
+            return this.axs[i];
+        }
+
+        setDelta(x:number,y:number,i:number):void{
+            this.axs[i].setDelta(x,y);
+        }
+
+        setCenter(x:number,y:number):void{
+            var ar:Dot[] = this.dots;
+          //  this.view.css('left',x+'px').css('top',y+'px');
+            this.view.css('left',x+'px').css('top',y+'px');
+            this.offsetx=x;
+            this.offsety=y;
+
+            for (var i = 0, n = ar.length; i < n; i++)   ar[i].setCenter(0-x,0-y);
+           // this.b.setCenter(0-x,0-y);
+            var ar2 =this.axs
+            for (var i = 0, n = ar2.length; i < n; i++)  ar2[i].setCenter(0-x,0-y);
+        }
+
+        setDots(d:Dot[]):void{
+            this.dots=d;
+            var ar =d;
+            var cont = $('#overlay');
+
+           var svg:JQuery = $('<div>').attr('id','Draw').appendTo(cont);
+            var dots:JQuery = $('<div>').attr('id','Dots').appendTo(cont);
+            var draw = SVG('Draw').size(800, 800);
+            for (var i = 0, n = ar.length; i < n; i++) {
+                ar[i].setDraw(draw);
+                ar[i].addTo(dots);
+                if(i<n-1)ar[i].setOthers(ar.slice(i+1));
+            }
+            var draw = SVG('Draw').size(800, 800);
+
+        }
+
+        constructor(public view:JQuery){
+               // view.on('click',(evt)=>this.onClick(evt));
+        }
+
+       // private onClick(evt:JQueryEventObject):void{
+        //    console.log(evt);
+       // }
+
+        setPos(x:number,y:number):void{
+
+        }
     }
 
-    getAxis(i:number):Axis{
-        return this.axs[i];
-    }
 
-    setDelta(x:number,y:number,i:number):void{
-        this.axs[i].setDelta(x,y);
-    }
-    setCenter(x:number,y:number):void{
-        var ar:Dot[] = this.dots;
-      //  this.view.css('left',x+'px').css('top',y+'px');
-        this.view.css('left',x+'px').css('top',y+'px');
-        this.offsetx=x;
-        this.offsety=y;
-
-        for (var i = 0, n = ar.length; i < n; i++)   ar[i].setCenter(0-x,0-y);
-       // this.b.setCenter(0-x,0-y);
-        var ar2 =this.axs
-        for (var i = 0, n = ar2.length; i < n; i++)  ar2[i].setCenter(0-x,0-y);
-    }
-
-    setDots(d:Dot[]):void{
-        this.dots=d;
-        var ar =d;
-        for (var i = 0, n = ar.length; i < n; i++)  $('#overlay').append(ar[i].view);
-
-    }
-    constructor(public view:JQuery){
-
-           // view.on('click',(evt)=>this.onClick(evt));
-
-    }
-
-   // private onClick(evt:JQueryEventObject):void{
-    //    console.log(evt);
-   // }
-
-    setPos(x:number,y:number):void{
-
-    }
-}
 class Dot{
     view:JQuery;
     m:Matrix;
     c_x:number;
     c_y:number;
+    x:number;
+    y:number;
+    h:number;
+    w:number
+    isCollide:boolean;
+    rect:svgjs.Element
+    others:Dot[];
+    text:JQuery;
+    id:number;
 
-    constructor(label:string,public p:Point){
-        this.view=$('<div>').addClass('dot').html('<span>'+label+'</span>');
+    constructor(id,label:string,public p:Point){
+        this.id=id
+        this.text= $('<div>').text(label)
+        this.view=$('<div>').addClass('dot').append(this.text);
         this.setPos(p);
+
+    }
+
+    setDraw(svg:svgjs.Element):void{
+       // this.rect = svg.rect(10,10);
+    }
+
+    setOthers(ar:Dot[]):void{
+        this.others=ar;
+
+    }
+
+    setHit(id:number):void{
+        this.view.addClass('colide');
+        this.text.text(' D '+this.id+' hitted by  '+id +' '+this.x.toFixed()+' '+this.y.toFixed()+' '+this.w.toFixed()+' '+this.h.toFixed());
+    }
+    resetHit():void{
+        this.text.text(' D '+this.id+' no collision '+this.x.toFixed()+' '+this.y.toFixed()+' '+this.w.toFixed()+' '+this.h.toFixed());
+        this.view.removeClass('colide');
+        this.isCollide = false;
+    }
+    addTo(cont:JQuery):void{
+        cont.append(this.view);
+      //  console.log(this.x+'  '+this.y);
+        var rec =this.view.children()[0].getBoundingClientRect();
+        this.h = rec.height;
+        this.w = rec.width;
+        this.text.width(this.w);
+        this.text.text(' D '+this.id+' - '+this.x.toFixed()+' '+this.y.toFixed()+' '+this.w.toFixed()+' '+this.h.toFixed());
+        //this.view.width(this.w);
+        //this.view.height(this.h);
+
+       // this.rect.attr({'width':this.w,'height':this.h,'fill':'#fff'});
+
+
+
+       // console.log(this.view.children()[0].getBoundingClientRect());
+
+    }
+    checkCollision(){
+        if(!this.others) return;
+        var ar = this.others
+        for (var i = 0, n = ar.length; i < n; i++) {
+            if(this.isColide(ar[i])){
+                ar[i].setHit(this.id);
+                this.text.text(' D'+this.id+' colided with D'+ar[i].id+' '+this.x.toFixed()+' '+this.y.toFixed()+' '+this.w.toFixed()+' '+this.h.toFixed());
+                this.view.addClass('colide');
+                this.isCollide = true;
+                break
+            }
+
+        }
+        //if(i==n && this.isCollide) {
+
+
+      //  }
+    }
+    isColide(dot:Dot):boolean{
+        return (this.x<dot.x+dot.w && this.x+this.w>dot.x && this.y<dot.y+dot.h && this.h+this.y>dot.y)
     }
     refresh(){
         this.setPos(this.m.transformPoint((this.p.x+this.c_x),(this.p.y+this.c_y)));
@@ -174,6 +289,7 @@ class Dot{
     setMatrix(m:Matrix):void{
         this.m=m;
     }
+
     setCenter(x:number,y:number):void{
        // this.p.x+=x;
        // this.p.y+=y;
@@ -181,6 +297,13 @@ class Dot{
         this.c_y=y;
     }
     setPos(p:Point):void{
+        this.x=p.x;
+        this.y=p.y;
+       // if(this.rect){
+          //  this.rect.attr('x', this.x);
+           // this.rect.attr('y', this.y);
+       // }
+
    // this.view.css({left:p.x,top:p.y});
         this.view.css('transform','translate('+p.x+'px,'+p.y+'px)');
     }
@@ -280,6 +403,7 @@ class Axis{
         this.view.css('transform','matrix('+ar+')');
     }
 }
+
 class Point{
     constructor(public x:number,public y:number){
 
