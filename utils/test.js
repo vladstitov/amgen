@@ -18,7 +18,7 @@ var Test = (function () {
         for (var i = 0, n = 300; i < n; i++) {
             var x = Math.random() * 800;
             var y = Math.random() * 800;
-            dots.push(new Dot(' dot ' + x + 'x' + y, new Point(x, y)));
+            dots.push(new Dot(' dot x:' + x + ' y:' + y, new Point(x, y)));
         }
         dots.push(new Dot(' dot 100x100', new Point(100, 100)));
         dots.push(new Dot('dot 800x800', new Point(800, 800)));
@@ -140,7 +140,7 @@ var Container = (function () {
 var Dot = (function () {
     function Dot(label, p) {
         this.p = p;
-        this.view = $('<div>').html(label).addClass('dot');
+        this.view = $('<div>').addClass('dot').html('<span>' + label + '</span>');
         this.setPos(p);
     }
     Dot.prototype.refresh = function () {
