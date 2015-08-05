@@ -94,9 +94,8 @@ var Container = (function () {
         //  var m=this.b.m;
         var ar = this.dots;
         for (var i = 0, n = ar.length; i < n; i++)
-            ar[i].resetHit();
-        for (var i = 0, n = ar.length; i < n; i++)
             ar[i].refresh();
+        this.checkForCollision();
         //dot.setPos(m.transformPoint(dot.p.x,dot.p.y));
     };
     Container.prototype.checkForCollision = function () {
@@ -185,13 +184,18 @@ var Dot = (function () {
         this.others = ar;
     };
     Dot.prototype.setHit = function (id) {
-        this.view.addClass('colide');
-        this.text.text(' D ' + this.id + ' hitted by  ' + id + ' ' + this.x.toFixed() + ' ' + this.y.toFixed() + ' ' + this.w.toFixed() + ' ' + this.h.toFixed());
+        if (!this.isCollided) {
+            this.isCollided = true;
+            this.view.addClass('colide');
+            this.text.text(' D ' + this.id + ' hitted by  ' + id + ' ' + this.x.toFixed() + ' ' + this.y.toFixed() + ' ' + this.w.toFixed() + ' ' + this.h.toFixed());
+        }
     };
     Dot.prototype.resetHit = function () {
-        this.text.text(' D ' + this.id + ' no collision ' + this.x.toFixed() + ' ' + this.y.toFixed() + ' ' + this.w.toFixed() + ' ' + this.h.toFixed());
-        this.view.removeClass('colide');
-        this.isCollide = false;
+        if (this.isCollided) {
+            this.text.text(' D ' + this.id + ' no collision ' + this.x.toFixed() + ' ' + this.y.toFixed() + ' ' + this.w.toFixed() + ' ' + this.h.toFixed());
+            this.view.removeClass('colide');
+            this.isCollided = false;
+        }
     };
     Dot.prototype.addTo = function (cont) {
         cont.append(this.view);
@@ -199,8 +203,11 @@ var Dot = (function () {
         var rec = this.view.children()[0].getBoundingClientRect();
         this.h = rec.height;
         this.w = rec.width;
+        this.l_dx = (-this.w / 2);
+        this.l_dy = (-this.h - 5);
         this.text.width(this.w);
         this.text.text(' D ' + this.id + ' - ' + this.x.toFixed() + ' ' + this.y.toFixed() + ' ' + this.w.toFixed() + ' ' + this.h.toFixed());
+        this.text.css('transform', 'translate(' + this.l_dx + 'px,' + this.l_dy + 'px)');
         //this.view.width(this.w);
         //this.view.height(this.h);
         // this.rect.attr({'width':this.w,'height':this.h,'fill':'#fff'});
@@ -211,21 +218,24 @@ var Dot = (function () {
             return;
         var ar = this.others;
         for (var i = 0, n = ar.length; i < n; i++) {
-            if (this.isColide(ar[i])) {
+            if (ar[i].isCollided)
+                continue;
+            if (this.isCollide(ar[i])) {
                 ar[i].setHit(this.id);
                 this.text.text(' D' + this.id + ' colided with D' + ar[i].id + ' ' + this.x.toFixed() + ' ' + this.y.toFixed() + ' ' + this.w.toFixed() + ' ' + this.h.toFixed());
                 this.view.addClass('colide');
-                this.isCollide = true;
+                this.isCollided = true;
                 break;
             }
         }
         //if(i==n && this.isCollide) {
         //  }
     };
-    Dot.prototype.isColide = function (dot) {
+    Dot.prototype.isCollide = function (dot) {
         return (this.x < dot.x + dot.w && this.x + this.w > dot.x && this.y < dot.y + dot.h && this.h + this.y > dot.y);
     };
     Dot.prototype.refresh = function () {
+        this.resetHit();
         this.setPos(this.m.transformPoint((this.p.x + this.c_x), (this.p.y + this.c_y)));
     };
     Dot.prototype.setMatrix = function (m) {
@@ -238,14 +248,18 @@ var Dot = (function () {
         this.c_y = y;
     };
     Dot.prototype.setPos = function (p) {
-        this.x = p.x;
-        this.y = p.y;
+        this.lx = p.x + this.l_dx;
+        this.ly = p.y + this.l_dy;
+        this.px = p.x;
+        this.py = p.y;
+        this.x = p.x; //-(this.w/2);
+        this.y = p.y; //-(this.h);
         // if(this.rect){
         //  this.rect.attr('x', this.x);
         // this.rect.attr('y', this.y);
         // }
         // this.view.css({left:p.x,top:p.y});
-        this.view.css('transform', 'translate(' + p.x + 'px,' + p.y + 'px)');
+        this.view.css('transform', 'translate(' + this.x + 'px,' + this.y + 'px)');
     };
     return Dot;
 })();

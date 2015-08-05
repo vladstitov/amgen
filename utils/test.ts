@@ -14,7 +14,6 @@
             this.c.refreshDots();
         }
 
-
         private showDots(isAll:boolean):void{
            // var ar =this.
           //  for (var i = 0, n = ar.length; i < n; i++) {
@@ -27,6 +26,7 @@
             this.c.checkForCollision();
             this.showDots(this.chkAll.prop('checked'));
         }
+
         constructor(){
             var tools= $('#tools');
             this.chkAll = $('#chkAll').on('change',()=>this.onCheckAllChange())
@@ -34,14 +34,10 @@
             c.addAxis( new Axis($('#Axis')));
             c.addAxis( new Axis($('#Axis2')));
             this.c=c;
-
             var b:Axis = this.c.getAxis(1);
-
-            var dots:Dot[]=[]
+            var dots:Dot[]=[];
           //  var dot = new Dot(' dot 100x100',new Point(100,100));
-
            // dot.offset(-200,-300);
-
             b.getFloor().on('click',(evt)=>this.onFloorClick(evt));
 
            // dot.setPos(b.transformPoint(dot.p));
@@ -52,7 +48,6 @@
                 var x= pozs[i].x;//Math.random()*800;
                 var y = pozs[i].y;// Math.random()*800;
               //  pozs.push({x:x,y:y});
-
                 dots.push(new Dot(i,'D'+i+' x:'+x+' y:'+y,new Point(x,y)));
             }
 
@@ -67,7 +62,6 @@
             var ar =dots
             for (var i = 0, n = ar.length; i < n; i++){
                 ar[i].setMatrix(b.m);
-
             }
             c.setDots(dots);
           // c.setOffset(500,500);
@@ -113,8 +107,8 @@
         refreshDots(){
           //  var m=this.b.m;
             var ar =this.dots
-            for (var i = 0, n = ar.length; i < n; i++)  ar[i].resetHit();
             for (var i = 0, n = ar.length; i < n; i++)    ar[i].refresh();
+            this.checkForCollision();
                 //dot.setPos(m.transformPoint(dot.p.x,dot.p.y));
 
         }
@@ -210,9 +204,15 @@ class Dot{
     c_y:number;
     x:number;
     y:number;
+    px:number;
+    py:number;
+    lx:number;
+    ly:number;
     h:number;
     w:number
-    isCollide:boolean;
+    l_dx:number;
+    l_dy:number;
+    isCollided:boolean;
     rect:svgjs.Element
     others:Dot[];
     text:JQuery;
@@ -236,13 +236,19 @@ class Dot{
     }
 
     setHit(id:number):void{
-        this.view.addClass('colide');
-        this.text.text(' D '+this.id+' hitted by  '+id +' '+this.x.toFixed()+' '+this.y.toFixed()+' '+this.w.toFixed()+' '+this.h.toFixed());
+        if(!this.isCollided) {
+            this.isCollided = true;
+            this.view.addClass('colide');
+            this.text.text(' D ' + this.id + ' hitted by  ' + id + ' ' + this.x.toFixed() + ' ' + this.y.toFixed() + ' ' + this.w.toFixed() + ' ' + this.h.toFixed());
+        }
     }
+
     resetHit():void{
-        this.text.text(' D '+this.id+' no collision '+this.x.toFixed()+' '+this.y.toFixed()+' '+this.w.toFixed()+' '+this.h.toFixed());
-        this.view.removeClass('colide');
-        this.isCollide = false;
+        if(this.isCollided){
+            this.text.text(' D '+this.id+' no collision '+this.x.toFixed()+' '+this.y.toFixed()+' '+this.w.toFixed()+' '+this.h.toFixed());
+            this.view.removeClass('colide');
+            this.isCollided = false;
+        }
     }
     addTo(cont:JQuery):void{
         cont.append(this.view);
@@ -250,8 +256,11 @@ class Dot{
         var rec =this.view.children()[0].getBoundingClientRect();
         this.h = rec.height;
         this.w = rec.width;
+        this.l_dx=(-this.w/2);
+        this.l_dy=(-this.h-5);
         this.text.width(this.w);
         this.text.text(' D '+this.id+' - '+this.x.toFixed()+' '+this.y.toFixed()+' '+this.w.toFixed()+' '+this.h.toFixed());
+        this.text.css('transform','translate('+this.l_dx+'px,'+this.l_dy+'px)');
         //this.view.width(this.w);
         //this.view.height(this.h);
 
@@ -266,11 +275,12 @@ class Dot{
         if(!this.others) return;
         var ar = this.others
         for (var i = 0, n = ar.length; i < n; i++) {
-            if(this.isColide(ar[i])){
+            if(ar[i].isCollided) continue;
+            if(this.isCollide(ar[i])){
                 ar[i].setHit(this.id);
                 this.text.text(' D'+this.id+' colided with D'+ar[i].id+' '+this.x.toFixed()+' '+this.y.toFixed()+' '+this.w.toFixed()+' '+this.h.toFixed());
                 this.view.addClass('colide');
-                this.isCollide = true;
+                this.isCollided = true;
                 break
             }
 
@@ -280,10 +290,11 @@ class Dot{
 
       //  }
     }
-    isColide(dot:Dot):boolean{
+    isCollide(dot:Dot):boolean{
         return (this.x<dot.x+dot.w && this.x+this.w>dot.x && this.y<dot.y+dot.h && this.h+this.y>dot.y)
     }
     refresh(){
+        this.resetHit();
         this.setPos(this.m.transformPoint((this.p.x+this.c_x),(this.p.y+this.c_y)));
     }
     setMatrix(m:Matrix):void{
@@ -297,15 +308,20 @@ class Dot{
         this.c_y=y;
     }
     setPos(p:Point):void{
-        this.x=p.x;
-        this.y=p.y;
+        this.lx = p.x+this.l_dx;
+        this.ly = p.y+this.l_dy;
+        this.px = p.x;
+        this.py = p.y;
+        this.x = p.x; //-(this.w/2);
+        this.y = p.y; //-(this.h);
+
        // if(this.rect){
           //  this.rect.attr('x', this.x);
            // this.rect.attr('y', this.y);
        // }
 
    // this.view.css({left:p.x,top:p.y});
-        this.view.css('transform','translate('+p.x+'px,'+p.y+'px)');
+        this.view.css('transform','translate('+this.x+'px,'+this.y+'px)');
     }
 }
 
