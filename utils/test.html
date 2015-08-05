@@ -71,6 +71,7 @@
             background-color: black;
             border-radius: 50% 50%;
             white-space: nowrap;
+            pointer-events: none;
         }
         .dot.colide{
             color: red;
@@ -78,6 +79,7 @@
         .dot>div{
             display: inline-block;
             border: thin black solid;
+            display: none;
         }
         .axis, .dot {
             transition: all 0.5s ease-in-out;
@@ -104,7 +106,7 @@
     </div>
     <div id="Axis2" class="axis">
         <div  class="floor">
-            <img src="Ppath2.png" />
+            <img draggable="false" src="Ppath2.png" />
         </div>
     </div>
     <div id="overlay"></div>

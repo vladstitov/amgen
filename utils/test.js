@@ -16,7 +16,7 @@ var Test = (function () {
         var dots = [];
         //  var dot = new Dot(' dot 100x100',new Point(100,100));
         // dot.offset(-200,-300);
-        b.getFloor().on('click', function (evt) { return _this.onFloorClick(evt); });
+        // b.getFloor().on('click',(evt)=>this.onFloorClick(evt));
         // dot.setPos(b.transformPoint(dot.p));
         var pozs = [{ "x": 215.17145447432995, "y": 212.76172678917646 }, { "x": 56.142378225922585, "y": 265.20573887974024 }, { "x": 730.9521438553929, "y": 608.140772394836 }, { "x": 782.8789498656988, "y": 177.1478684619069 }, { "x": 381.6274179145694, "y": 589.02433142066 }, { "x": 21.496057510375977, "y": 325.3415632992983 }, { "x": 98.4149869531393, "y": 77.45092883706093 }, { "x": 295.6329019740224, "y": 628.1002461910248 }, { "x": 514.7975726053119, "y": 325.2354299649596 }, { "x": 73.39946758002043, "y": 87.24315669387579 }, { "x": 3.154577501118183, "y": 7.934784330427647 }, { "x": 661.1742189154029, "y": 87.06492688506842 }, { "x": 283.5581509396434, "y": 558.9896366000175 }, { "x": 166.29401128739119, "y": 657.5469741597772 }, { "x": 363.0776338279247, "y": 0.2620251849293709 }, { "x": 721.845443174243, "y": 346.03761434555054 }, { "x": 768.4383545070887, "y": 535.2868840098381 }, { "x": 79.52180933207273, "y": 231.59336410462856 }, { "x": 421.9799358397722, "y": 230.70451095700264 }, { "x": 449.42026175558567, "y": 599.0188645198941 }, { "x": 296.1183352395892, "y": 775.3022788092494 }, { "x": 213.69051281362772, "y": 137.29318529367447 }, { "x": 242.2224096953869, "y": 718.5798559337854 }, { "x": 47.82835468649864, "y": 121.1811589077115 }, { "x": 74.13299195468426, "y": 436.66759207844734 }, { "x": 158.99365041404963, "y": 208.4112834185362 }, { "x": 87.66234237700701, "y": 543.5546413064003 }, { "x": 95.03505080938339, "y": 771.7841187492013 }, { "x": 771.6460132971406, "y": 136.81608345359564 }, { "x": 392.01107304543257, "y": 676.8729563802481 }];
         for (var i = 0, n = pozs.length; i < n; i++) {
@@ -40,7 +40,11 @@ var Test = (function () {
         // c.setOffset(500,500);
         // c.setDelta(0,100,0);
         c.setDelta(0, 0, 0);
+        c.screenx = 450;
+        c.screeny = 450;
         c.setCenter(450, 450);
+        c.setDotsCenter(450, 450);
+        // c.setCenter(200,200);
         c.refreshDots();
         var that = this;
         var rotate = tools.find('[data-id=rotate]:first').on('change', function () {
@@ -84,11 +88,17 @@ var Test = (function () {
 })();
 var Container = (function () {
     function Container(view) {
+        var _this = this;
         this.view = view;
         this.axs = [];
         this.offsetx = 0;
         this.offsety = 0;
-        // view.on('click',(evt)=>this.onClick(evt));
+        this.screenx = 0;
+        this.screeny = 0;
+        console.log(view);
+        this.parent = view.parent();
+        this.parent.on('mousedown', function (evt) { return _this.onMouseDown(evt); });
+        this.parent.on('mouseup', function (evt) { return _this.onMouseUp(evt); });
     }
     Container.prototype.refreshDots = function () {
         //  var m=this.b.m;
@@ -135,17 +145,20 @@ var Container = (function () {
         this.axs[i].setDelta(x, y);
     };
     Container.prototype.setCenter = function (x, y) {
-        var ar = this.dots;
         //  this.view.css('left',x+'px').css('top',y+'px');
         this.view.css('left', x + 'px').css('top', y + 'px');
+        this.parent.css('left', this.screenx - x + 'px').css('top', this.screeny - y + 'px');
         this.offsetx = x;
         this.offsety = y;
+        // this.b.setCenter(0-x,0-y);
+        var ar = this.axs;
         for (var i = 0, n = ar.length; i < n; i++)
             ar[i].setCenter(0 - x, 0 - y);
-        // this.b.setCenter(0-x,0-y);
-        var ar2 = this.axs;
-        for (var i = 0, n = ar2.length; i < n; i++)
-            ar2[i].setCenter(0 - x, 0 - y);
+    };
+    Container.prototype.setDotsCenter = function (x, y) {
+        var ar = this.dots;
+        for (var i = 0, n = ar.length; i < n; i++)
+            ar[i].setCenter(0 - x, 0 - y);
     };
     Container.prototype.setDots = function (d) {
         this.dots = d;
@@ -161,6 +174,32 @@ var Container = (function () {
                 ar[i].setOthers(ar.slice(i + 1));
         }
         var draw = SVG('Draw').size(800, 800);
+    };
+    Container.prototype.onMouseDown = function (evt) {
+        var _this = this;
+        this.view.on('mousemove', function (evt) { return _this.onMouseMove(evt); });
+        this.startx = evt.clientX;
+        this.starty = evt.clientY;
+        this.prevx = evt.clientX;
+        this.prevy = evt.clientY;
+    };
+    Container.prototype.addOffset = function (x, y) {
+        this.setCenter(this.offsetx + x, this.offsety + y);
+        this.setDotsCenter(this.offsetx, this.offsety);
+        this.refreshDots();
+    };
+    Container.prototype.onMouseMove = function (evt) {
+        var dx = evt.clientX - this.prevx;
+        var dy = evt.clientY - this.prevy;
+        this.prevx = evt.clientX;
+        this.prevy = evt.clientY;
+        // this.b.addDelta(dx,dy);// Matrix dx and dy don't work
+        this.addOffset(-dx, -dy);
+        //this.addD(dx,dy);
+        //  console.log(evt);
+    };
+    Container.prototype.onMouseUp = function (evt) {
+        this.view.off('mousemove');
     };
     // private onClick(evt:JQueryEventObject):void{
     //    console.log(evt);
@@ -288,6 +327,12 @@ var Axis = (function () {
     };
     Axis.prototype.transformPoint = function (p) {
         return this.m.transformPoint(p.x, p.y);
+    };
+    Axis.prototype.addDelta = function (x, y) {
+        var m = this.m;
+        m.tx += x;
+        m.ty += y;
+        this.apply();
     };
     Axis.prototype.setDelta = function (x, y) {
         var m = this.m;
