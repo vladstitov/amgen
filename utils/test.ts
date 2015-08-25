@@ -3,8 +3,9 @@
  */
     ///<reference path="../libs/typings/jquery.d.ts" />
     ///<reference path="../libs/typings/svgjs.d.ts" />
+    ///<reference path="../libs/typings/greensock.d.ts" />
     class Test{
-        c:Container;
+        c:Building;
 
         chkAll:JQuery
 
@@ -30,7 +31,7 @@
         constructor(){
             var tools= $('#tools');
             this.chkAll = $('#chkAll').on('change',()=>this.onCheckAllChange())
-            var c = new Container($('#building_c'));
+            var c = new Building($('#Building'));
 
             c.addAxis( new Axis($('#Axis')));
             c.addAxis( new Axis($('#Axis2')));
@@ -45,9 +46,11 @@
             var pozs=[{"x":215.17145447432995,"y":212.76172678917646},{"x":56.142378225922585,"y":265.20573887974024},{"x":730.9521438553929,"y":608.140772394836},{"x":782.8789498656988,"y":177.1478684619069},{"x":381.6274179145694,"y":589.02433142066},{"x":21.496057510375977,"y":325.3415632992983},{"x":98.4149869531393,"y":77.45092883706093},{"x":295.6329019740224,"y":628.1002461910248},{"x":514.7975726053119,"y":325.2354299649596},{"x":73.39946758002043,"y":87.24315669387579},{"x":3.154577501118183,"y":7.934784330427647},{"x":661.1742189154029,"y":87.06492688506842},{"x":283.5581509396434,"y":558.9896366000175},{"x":166.29401128739119,"y":657.5469741597772},{"x":363.0776338279247,"y":0.2620251849293709},{"x":721.845443174243,"y":346.03761434555054},{"x":768.4383545070887,"y":535.2868840098381},{"x":79.52180933207273,"y":231.59336410462856},{"x":421.9799358397722,"y":230.70451095700264},{"x":449.42026175558567,"y":599.0188645198941},{"x":296.1183352395892,"y":775.3022788092494},{"x":213.69051281362772,"y":137.29318529367447},{"x":242.2224096953869,"y":718.5798559337854},{"x":47.82835468649864,"y":121.1811589077115},{"x":74.13299195468426,"y":436.66759207844734},{"x":158.99365041404963,"y":208.4112834185362},{"x":87.66234237700701,"y":543.5546413064003},{"x":95.03505080938339,"y":771.7841187492013},{"x":771.6460132971406,"y":136.81608345359564},{"x":392.01107304543257,"y":676.8729563802481}];
 
 
-            for (var i = 0, n = pozs.length; i < n; i++) {
-                var x= pozs[i].x;//Math.random()*800;
-                var y = pozs[i].y;// Math.random()*800;
+            for (var i = 0, n = 300; i < n; i++) {
+                var x= Math.random()*800;
+              //  var x= pozs[i].x;//Math.random()*800;
+                var y = Math.random()*800;
+              // var y = pozs[i].y;// Math.random()*800;
               //  pozs.push({x:x,y:y});
                 dots.push(new Dot(i,'D'+i+' x:'+x+' y:'+y,new Point(x,y)));
             }
@@ -64,6 +67,7 @@
             for (var i = 0, n = ar.length; i < n; i++){
                 ar[i].setMatrix(b.m);
             }
+
             c.setDots(dots);
           // c.setOffset(500,500);
            // c.setDelta(0,100,0);
@@ -85,7 +89,7 @@
 
             var scale =  tools.find('[data-id=scale]:first').on('change',function(){
               //  console.log( scale.val());
-                var v =  ((scale.val())/50);
+                var v =  ((scale.val())/10);
                 if(v<0.2) v=0.2;
                 c.scale(v);
                // that.refreshDots();
@@ -103,15 +107,14 @@
         }
     }
 
-    class Container{
+    class Building{
         b:Axis;
         axs:Axis[]=[];
         dots:Dot[];
-        offsetx:number=0;
-        offsety:number=0;
+        c_x:number=0;
+        c_y:number=0;
         screenx:number=0;
         screeny:number=0;
-
 
         refreshDots(){
           //  var m=this.b.m;
@@ -167,9 +170,9 @@
 
           //  this.view.css('left',x+'px').css('top',y+'px');
             this.view.css('left',x+'px').css('top',y+'px');
-            this.parent.css('left',this.screenx-x+'px').css('top',this.screeny-y+'px');
-            this.offsetx=x;
-            this.offsety=y;
+           // this.viewport.css('left',this.screenx-x+'px').css('top',this.screeny-y+'px');
+            this.c_x=x;
+            this.c_y=y;
            // this.b.setCenter(0-x,0-y);
             var ar =this.axs;
             for (var i = 0, n = ar.length; i < n; i++)  ar[i].setCenter(0-x,0-y);
@@ -198,13 +201,35 @@
 
         }
 
-        private parent:JQuery
+        private viewport:JQuery
 
+        scaleRange:number[];
+        isScale:boolean=false;
         constructor(public view:JQuery){
-            console.log(view);
-            this.parent=view.parent();
-            this.parent.on('mousedown',(evt)=>this.onMouseDown(evt));
-            this.parent.on('mouseup',(evt)=>this.onMouseUp(evt));
+          ///  console.log(view);
+            var sc:number[]=[]
+            for(var i=1;i<100;i++){
+                sc.push(i/10);
+            }
+
+
+            this.scaleRange=sc;
+
+            this.scalePoz=9;
+           // console.log(sc);
+            this.viewport=view.parent();
+            //this.parent.on('tap')
+        }
+
+        addListeners():void{
+            this.viewport.on('mousedown',(evt)=>this.onMouseDown(evt));
+            this.viewport.on('mouseup',(evt)=>this.onMouseUp(evt));
+            this.viewport.on('touchstart',(evt)=>this.onTouchStart(evt));
+            this.viewport.on('touchmove',(evt)=>this.onTouchMove(evt));
+            document.removeEventListener('touchend', (evt)=>this.onTouchEnd(evt));
+        }
+        private onTouchEnd(evt:any){
+            this.isGesture = false;
         }
 
         private startx:number;
@@ -212,33 +237,248 @@
         private prevx:number;
         private prevy:number;
 
-        private onMouseDown(evt:JQueryEventObject):void{
+        private onTouchStart(evt):void{
+            evt.preventDefault();
+            var touch = evt.originalEvent.touches[0];
+            this.onPointerDown(touch);
+            //this.v_x = this.viewport.offset().left;
+           // this.v_y = this.viewport.offset().top;
 
-            this.view.on('mousemove',(evt)=>this.onMouseMove(evt))
-            this.startx = evt.clientX;
-            this.starty = evt.clientY;
-            this.prevx= evt.clientX;
-            this.prevy= evt.clientY;
+           // this.startx = touch.clientX;
+           // this.starty = touch.clientY;
+           // console.log(this.v_x,this.v_y);
+         //   TweenMax.to(document.getElementById('ViewPort'),1,{x:touch.clientX,y:touch.clientY});
+//console.log(evt);
+           // this.onMouseDown();
         }
 
+        private v_x:number;
+        private v_y:number;
+
+        private new_x:number=0;
+        private new_y:number=0;
+      //  private old_x:number=0;
+       // private old_y:number=0;
+        private cur_x:number=0;
+        private cur_y:number=0;
+        private d_x:number=0;
+        private d_y:number=0;
+
+        private newPos(x:number,y:number):void{
+            this.new_x=x;
+            this.new_y=y;
+        }
+
+
+        private moveToCur():void{
+
+           this.viewport.css('transform','translate('+this.cur_x+'px, '+this.cur_y+'px)');
+
+        }
+        private interv:number=0;
+        private moveToNew():void{
+            if(Math.abs(this.new_x-this.cur_x)<5){
+                clearInterval(this.interv);
+                console.log('moveToNew clearInterval');
+                this.interv=0;
+            }
+            console.log('moveToNew  this.cur_x '+this.cur_x);
+            this.cur_x+=this.d_x;
+            this.cur_y+=this.d_y;
+            this.moveToCur();
+
+        }
+
+        private moveTo(){
+            if(Math.abs(this.prevx-this.new_x)+ Math.abs(this.prevy-this.new_y)<10)  return;
+            this.prevx = this.new_x;
+            this.prevy = this.new_y;
+            TweenMax.to(this.viewport,0.3,{x:this.new_x,y:this.new_y});
+        }
+
+        private isGesture:boolean=false;
+        private touchStartDistance:number=0;
+        private touchStartAngle:number=0;
+        private startScale:number=0;
+        private startAngle:number=0;
+        private currentScale:number=1;
+        private currentRotation:number=0;
+        private minScale:number=0.2;
+        private maxScale:number=20;
+
+        private handleGestureStart(x1:number, y1:number, x2:number, y2:number){
+            this.isGesture = true;
+            var dx = x2 - x1;
+            var dy = y2 - y1;
+            this.touchStartDistance=Math.sqrt(dx*dx+dy*dy);
+            this.touchStartAngle=Math.atan2(dy,dx);
+            this.startScale=this.currentScale;
+            this.startAngle=this.currentRotation;
+         }
+
+       private  prevDist:number=0;
+       private  scaleDelta:number=0;
+        private scalePoz:number = 9;
+        private curScalePos:number = 9;
+
+        private timer:number=0;
+
+
+        private prevScale:number;
+        private setPositions():void{
+            if(this.isScale){
+
+                if(this.currentScale<this.minScale) this.currentScale=this.minScale;
+                if(this.currentScale>this.maxScale) this.currentScale=this.maxScale;
+                if(Math.abs(this.prevScale=this.currentScale)>0.1){
+                    this.scale(this.currentScale);
+                    this.prevScale=this.currentScale;
+                }
+
+                this.isScale=false;
+            }
+
+        }
+        private startTimer():void{
+            if(this.timer===0)this.timer = setInterval(()=>this.setPositions(),1000);
+        }
+        private handleGesture(x1:number,y1:number,x2:number,y2:number):void{
+            if(!this.isGesture){
+                this.handleGestureStart(x1,y1,x2,y2);
+                return;
+            }
+            var dx = x2 - x1;
+            var dy = y2 - y1;
+
+            var touchDistance=Math.sqrt(dx*dx+dy*dy);
+            var scalePixelChange = touchDistance-this.touchStartDistance;
+
+           // console.log(scalePixelChange);
+           this.currentScale=this.startScale + scalePixelChange*0.01;
+            this.isScale=true;
+            this.startTimer();
+            console.log('currentScale '+this.currentScale);
+            this.scaleDelta=Math.round(touchDistance-this.prevDist);
+            //console.log(this.scalePoz);
+           // if(this.scaleDelta !==0){
+             //   this.scalePoz += Math.round(this.scaleDelta/10);
+              //  if(!this.isScale){
+                //    this.isScale=true;
+                //    this.onAnimationFrame(0);
+              //  }
+           // }
+           // this.prevDist=touchDistance;
+           /// console.log('this.scalePoz '+this.scalePoz);
+            var touchAngle=Math.atan2(dy,dx);
+           //
+           // var angleChange = touchAngle - this.touchStartAngle;
+           // console.log(this.scaleDelta);
+
+
+            //calculate how much this should affect the actual object
+          //
+
+           // this.currentRotation=this.startAngle+(angleChange*180/Math.PI);
+           // if(this.currentScale<this.minScale) this.currentScale=this.minScale;
+          //  if(this.currentScale>this.maxScale) this.currentScale=this.maxScale;
+            //this.scale(this.currentScale);
+        }
+
+        pStamp:number=0;
+        alTime:number;
+        count:number=11;
+
+
+        private onAnimationFrame(stamp) {
+
+            this.count++;
+            if(this.count>10){
+                this.count=0;
+                var total= (stamp - this.pStamp)/10;
+                if(total>10)total=1000/total;
+                console.log('total  '+total);
+                this.pStamp=stamp;
+            }
+
+
+           // console.log('stamp '+stamp);
+            if(this.scalePoz<0)this.scalePoz = 0;
+            if(this.scalePoz>=this.scaleRange.length) this.scalePoz = this.scaleRange.length-1;
+
+            if(this.curScalePos > this.scalePoz)this.curScalePos--;
+            else if(this.curScalePos < this.scalePoz)this.curScalePos++;
+            else this.isScale =  false;
+
+          //  console.log('onAnimationFrame  '+this.isScale+' this.curScalePos  '+this.curScalePos+'  this.scalePoz '+this.scalePoz);
+            if(this.isScale){
+                var scv:number=this.scaleRange[this.curScalePos];
+              //  console.log(scv);
+                    this.scale(scv);
+                    requestAnimationFrame(this.onAnimationFrame.bind(this));
+
+            }
+
+
+        }
+        private onTouchMove(evt):void{
+            evt.preventDefault();
+
+            var ts = evt.originalEvent.touches;
+            if(ts.length>1)this.handleGesture(ts[0].clientX,ts[0].clientY,ts[1].clientX,ts[1].clientY);
+            return;
+            if(ts.length===0) return;
+            if(ts.length ===1 )   this.onPointerMove(ts[0]);
+            else this.handleGesture(ts[0].clientX,ts[0].clientY,ts[1].clientX,ts[1].clientY);
+
+        }
+
+
+        private onPointerMove(evt):void{
+            var dx:number= evt.clientX-this.startx;
+            var dy:number= evt.clientY-this.starty;
+            this.new_x= this.startcx+dx;
+            this.new_y=this.startcy+dy;
+            this.moveTo();
+        }
+
+        private startcx:number=0;
+        private startcy:number=0;
+        private mouseDeltaX:number;
+        private mouseDeltaY:number;
+
+
+        private onMouseDown(evt:JQueryEventObject):void {
+            this.view.on('mousemove', (evt)=>this.onPointerMove(evt));
+            this.onPointerDown(evt);
+        }
+        private onPointerDown(evt:JQueryEventObject):void{
+            this.startx = evt.clientX;
+            this.starty = evt.clientY;
+            this.startcx = this.new_x;
+            this.startcy = this.new_y;
+        }
+
+        private c_s_x:number;
+       private c_s_y:number;
+
+
+
+        private deltaOffset(dx:number,dy:number):void{
+            this.setCenter(this.c_s_x+dx, this.c_s_y+dy);
+            this.setDotsCenter(this.c_x,this.c_y);
+           this.refreshDots();
+        }
         private addOffset(x:number,y:number):void{
-            this.setCenter(this.offsetx+x, this.offsety+y);
-            this.setDotsCenter(this.offsetx,this.offsety);
+            //console.log('add offset '+x+' '+y);
+            this.setCenter(this.c_x+x, this.c_y+y);
+            this.setDotsCenter(this.c_x,this.c_y);
             this.refreshDots();
 
         }
 
-        private onMouseMove(evt):void{
-            var dx:number= evt.clientX-this.prevx;
-            var dy:number= evt.clientY-this.prevy;
-            this.prevx = evt.clientX;
-            this.prevy = evt.clientY;
-           // this.b.addDelta(dx,dy);// Matrix dx and dy don't work
-            this.addOffset(-dx,-dy);
-            //this.addD(dx,dy);
-          //  console.log(evt);
 
-        }
+
+
 
         private onMouseUp(evt):void{
             this.view.off('mousemove');
@@ -306,6 +546,7 @@ class Dot{
             this.isCollided = false;
         }
     }
+
     addTo(cont:JQuery):void{
         cont.append(this.view);
       //  console.log(this.x+'  '+this.y);
@@ -327,6 +568,7 @@ class Dot{
        // console.log(this.view.children()[0].getBoundingClientRect());
 
     }
+
     checkCollision(){
         if(!this.others) return;
         var ar = this.others
@@ -363,6 +605,7 @@ class Dot{
         this.c_x=x;
         this.c_y=y;
     }
+
     setPos(p:Point):void{
         this.lx = p.x+this.l_dx;
         this.ly = p.y+this.l_dy;
@@ -544,7 +787,8 @@ class Point{
          return this;
      }
 }
-
+declare var initDragZoom:any
 $(document).ready(function(){
     var test=new Test();
+    initDragZoom();
 })

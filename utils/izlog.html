@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../libs/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../libs/svg.min.js"></script>
+    <script type="text/javascript" src="../libs/TweenMax.min.js"></script>
+    <script type="text/javascript" src="DragZoom.js"></script>
+    <script type="text/javascript" src="Izlog.js"></script>
+
+    <style>
+        .container {
+            background-color:gray;
+            width: 1000px;
+            height: 1000px;
+            -ms-touch-action: none;
+            ms-touch-action: none;
+        }
+        .plateContainer{
+            position: absolute;
+            left: 0;
+            top: 0;
+            -ms-touch-action: none;
+            ms-touch-action: none;
+        }
+        .plate{
+            position: absolute;
+            left: -400px;
+            top: -400px;
+        }
+        .axis .floor{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 1000px;
+            height: 1000px;
+            -ms-touch-action: none;
+            ms-touch-action: none;
+        }
+        .dot{
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background-color: black;
+            border-radius: 50% 50%;
+            white-space: nowrap;
+            pointer-events: none;
+            -ms-touch-action: none;
+            ms-touch-action: none;
+        }
+        .dot.colide{
+            color: red;
+        }
+        .dot>div{
+            display: inline-block;
+            border: thin black solid;
+            -ms-touch-action: none;
+            ms-touch-action: none;
+
+        }
+    </style>
+</head>
+
+<body class="nomargin">
+
+<div id="Container" class="container">
+    <div id="ViewPort" class="plateContainer plate">
+        <div id="Building">
+            <div id="Axis" class="axis">
+                <div  class="floor" style="background-image:url('Ppath2.png')">
+                    <!--  <img src="Ppath2.png" />-->
+                </div>
+            </div>
+            <div id="Axis2" class="axis">
+                <div  class="floor"  style="background-image:url('Ppath2.png')">
+                    <!-- <img draggable="false" src="Ppath2.png" />-->
+                </div>
+            </div>
+
+
+        </div>
+        <div id="overlay"></div>
+       <!-- <div  class="floor" style="background-image:url('Ppath2.png')">
+            <img src="Ppath2.png" class="plate">
+        </div>-->
+      <!--  <canvas id="plateCanvas" width="400" height="400" class="plate"></canvas>-->
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        var iz = new test.Izlog();
+        initDragZoom();
+    })
+</script>
+
+</body>
+</html>
