@@ -18,12 +18,13 @@
         y:number=0;
         scaleX:number=1;
         scaleY:number=1;
-        rotation:number=0
+      //  rotation:number=0
         angle:number
         skewX:number=0;
         skewY:number=0;
         regX:number=0;
         regY:number=0;
+        center:JQuery;
 
         DEG_TO_RAD = Math.PI / 180;
 
@@ -44,16 +45,26 @@
             this.style = window.getComputedStyle(view,null);
         }
 
+        drawCenter():void{
+
+        this.center = $('<div>').addClass('dot center').appendTo(this.$view);
+
+        }
 
         setCenter(x:number,y:number):DisplayObject{
             this.regX = x;
             this.regY = y;
+            if(this.center)this.center.css({left:x,top:y});
             return this;
         }
 
+        applyReg():DisplayObject{
+            this.view.style[this.origin]=this.regX+'px '+this.regY+'px ';
+            return this;
+        }
 
         setAngle(ang:number):DisplayObject{
-            this.rotation= ang/this.DEG_TO_RAD;
+           // this.rotation= ang*this.DEG_TO_RAD;
             this.angle=ang;
             return this
         }
@@ -62,10 +73,7 @@
             this.scaleX = x;
             return this;
         }
-        applyReg():DisplayObject{
-            this.view.style[this.origin]=this.regX+'px '+this.regY+'px ';
-            return this;
-        }
+
         applyMatrix():DisplayObject{
             return this;
         }
@@ -91,12 +99,14 @@
             return vo
         }
        readMatrixAr():number[]{
-            if(!this.mCache) this.mCache  = this.matrixToArray(this.style.getPropertyValue(this.transform)).map(Number);
-           return this.mCache
+            return this.matrixToArray(this.style.getPropertyValue(this.transform)).map(Number);
+          // return this.mCache
 
        }
 
-
+        globalToLocal(x:number, y:number, pt?:Point) {
+            return this.getConcatenatedMatrix().invert().transformPoint(x,y, pt);
+        }
         localToGlobal(x:number, y:number, pt?:Point) {
         return this.getConcatenatedMatrix().transformPoint(x,y,pt);
         }
@@ -107,16 +117,19 @@
         getConcatenatedMatrix = function():Matrix2D {
             var o:DisplayObject = this;
             var mtx:Matrix2D = this.getMatrix();
-            while (o = o.parent) {
-                mtx.prependMatrix(o.getMatrix());
-            }
+           // while (o = o.parent) {
+               // mtx.prependMatrix(o.getMatrix());
+            //}
             return mtx;
         }
 
         getMatrix() {
             var o:DisplayObject = this;
             var mtx:Matrix2D =  new Matrix2D();
-            return mtx.appendTransform(o.x, o.y, o.scaleX, o.scaleY, o.rotation, o.skewX, o.skewY, o.regX, o.regY);
+            console.log(mtx.toString());
+            var nm = mtx.appendTransform(o.x, o.y, o.scaleX, o.scaleY, o.angle, o.skewX, o.skewY, o.regX, o.regY);
+            console.log(nm.toString());
+            return nm
         }
 /*
         getMatrix(matrix:Matrix2D) {
@@ -152,6 +165,10 @@
            // this.identity = new Matrix2D(1,0,0,1,0,0);
         }
 
+        toString():string{
+            var vo:MatrixVO = this.vo
+            return vo.a+','+vo.b+','+vo.c+','+vo.d+','+vo.tx+','+vo.ty;
+        }
         setAr(ar:number[]):Matrix2D{
             var vo:MatrixVO = this.vo
             vo.a = ar[0];
@@ -194,10 +211,12 @@
             vo.ty = b*tx1+d*vo.ty+ty;
             return this;
          }
+
         appendMatrix (matrix:Matrix2D):Matrix2D {
             var vo:MatrixVO = matrix.vo;
             return this.append(vo.a, vo.b,vo.c, vo.d, vo.tx, vo.ty);
         }
+
         prependMatrix (matrix):Matrix2D {
             var vo:MatrixVO = matrix.vo;
             return this.prepend(vo.a, vo.b, vo.c, vo.d, vo.tx, vo.ty);
@@ -205,10 +224,10 @@
 
 
 
-        appendTransform(x:number, y:number, scaleX:number, scaleY:number, rotation:number, skewX?:number, skewY?:number, regX?:number, regY?:number):Matrix2D {
+        appendTransform(x:number, y:number, scaleX:number, scaleY:number, angle:number, skewX?:number, skewY?:number, regX?:number, regY?:number):Matrix2D {
             var vo:MatrixVO = this.vo;
-            if (rotation%360) {
-                var r = rotation*this.DEG_TO_RAD;
+            if (angle%360) {
+                var r = angle*this.DEG_TO_RAD;
                 var cos = Math.cos(r);
                 var sin = Math.sin(r);
             } else {

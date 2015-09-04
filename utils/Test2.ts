@@ -2,30 +2,25 @@
  * Created by Vlad on 8/18/2015.
  */
     ///<reference path="../libs/typings/jquery.d.ts" />
+    ///<reference path="Matrix2D.ts" />
 class Test2{
     private prefixedTransform:string;
-    viewPort:HTMLElement;
-    building:HTMLElement;
+   // viewPort:HTMLElement;
     posX:number=0;
     posY:number=0;
-  ////  currentRotation:number=0;
-   // currentScale:number=1;
-
     tools:Tools;
     touch:TouchController;
-
-    style:CSSStyleDeclaration;
+    building: view.DisplayObject;
+    dots:view.DisplayObject;
     constructor(){
-        if('transform' in document.body.style){
-            this.prefixedTransform='transform';
-        }else if('webkitTransform' in document.body.style){
-            this.prefixedTransform='webkitTransform';
-        }
-        this.building = document.getElementById('Building')
-        this.viewPort = document.getElementById('ViewPort');
 
-        this.style = window.getComputedStyle(this.building,null);
-           // this.startTimer();
+        this.building = new view.DisplayObject(document.getElementById('Building'),'webkitTransform','webkitTransformOrigin');
+
+
+       // this.viewPort = document.getElementById('ViewPort');
+        this.dots = new view.DisplayObject(document.getElementById('Dots'),'webkitTransform','webkitTransformOrigin');
+
+      //  $(this.viewPort).click((evt)=>this.onViewPortClick(evt));
         this.tools = new Tools();
         this.tools.onChange = ()=>this.onToolsChage();
         this.touch = new TouchController();
@@ -33,20 +28,54 @@ class Test2{
         this.touch.onMoveEnd = ()=>this.onMoveEnd();
         this.touch.onGestStart =()=>this.onGestStart();
         this.touch.onGestStop =()=>this.onGestStop();
+        this.curAng=0;
+        this.curScale=1;
        // this.touch.onMove=(dx,dy)=>this.
-       this.onAnimationFrame(0);
+        this.setCenter(200,200);
+      //  this.dots.$view.offset({top:800,left:800});
+     //  $('#Dots').offset({top:800,left:800})
+        this.dot100 = $('<div>').addClass('dot').text('100x100').offset({left:100,top:100}).appendTo(this.dots.$view);
+
+        var p = this.building.localToGlobal(100,100);
+        console.log(p);
+
+        this.dot100.css({top:p.y,left:p.x})
+
 
     }
+    dot100:JQuery
 
-    oncenterChaged(x:number,y:number){
-        $(this.building).css('transform-origin',  x+'px '+y+'px');
+    onViewPortClick(evt:JQueryEventObject):void{
+            var x:number =evt.clientX;
+            var y:number =evt.clientY;
+
+     //  var  dot=$('<div>').addClass('dot').offset({left:p.x,top:p.y});
+
+    // $(this.building).append(dot);
     }
+
+    setCenter(x:number,y:number){
+        x = x-this.posX;
+        y = y-this.posY;
+
+      //  var p={x:x,y:y};
+     //   var m = this.invert(this.getMatrix());
+     //   var p = this.transformPoint(x,y,m);
+      //  console.log(m);
+        this.building.setCenter(x,y).applyReg();
+       // this.building.style['webkitTransformOrigin']=  p.x+'px '+p.y+'px';
+       // $(this.building).css('transform-origin', p.x+'px '+p.y+'px');
+    }
+
     onToolsChage():void{
         console.log('change');
-        this.oncenterChaged(50,50);
         this.curAng= this.tools.angle
         this.curScale = this.tools.scale;
-        this.building.style[this.prefixedTransform]= 'translate(0,0) rotate('+this.curAng+'deg) scale('+this.curScale+') translateZ(0)';
+        this.building.setAngle(this.curAng);
+        this.building.setScale(this.curScale).applyRS();
+       var p = this.building.localToGlobal(500,500);
+        console.log(p);
+        this.dot100.css({left:p.x,top:p.y});
     }
 
     onGestStop():void{
@@ -57,11 +86,15 @@ class Test2{
         console.log(' onGestStart ');
         this.startAng = this.curAng;
         this.startScale = this.curScale;
+        var cX = this.touch.centerX;
+        var cy = this.touch.centerY;
+        this.setCenter(cX,cy);
+
         this.isRS=true;
     }
 
     onMoveEnd():void{
-        this.isPoz=false;
+        this.isPoz=false
     }
 
     private startX:number=0;
@@ -91,13 +124,13 @@ class Test2{
     this.total+=fps;
     this.last=now;
     this.count++
-    if(this.count==30){
-        this.count=0;
-        $('#FPS').text((this.total/30).toFixed())
-        this.total=0;
+        if(this.count==30){
+            this.count=0;
+            $('#FPS').text((this.total/30).toFixed())
+            this.total=0;
 
+        }
     }
-}
 
 
     onAnimationFrame(st:number){
@@ -108,9 +141,6 @@ class Test2{
 
 
 
-    private matrixToArray(str:string):string[] {
-        return str.split('(')[1].split(')')[0].split(',');
-    }
 
     timer:number;
     stopTimer():void{
@@ -120,10 +150,6 @@ class Test2{
    // startTimer():void{
      //   this.timer = setInterval(()=>this.render(),1000);
     //}
-
-
-
-
 
     isPoz:boolean;
     isRS:boolean;
@@ -147,18 +173,20 @@ class Test2{
 
     }
 
+
     render():void{
        if(this.isPoz){
            this.calcPosition();
-           this.viewPort.style[this.prefixedTransform]= 'translate('+this.posX+'px,'+this.posY+'px) rotate(0) scale(1) translateZ(0)';
+         //  this.viewPort.style[this.prefixedTransform]= 'translate('+this.posX+'px,'+this.posY+'px) rotate(0) scale(1) translateZ(0)';
        }
 
         if(this.isRS){
             this.calcZR();
-            this.building.style[this.prefixedTransform]= 'translate(0,0) rotate('+this.curAng+'deg) scale('+this.curScale+') translateZ(0)';
+           // this.mCache=null;
+            //this.building.style[this.prefixedTransform]= 'translate(0,0) rotate('+this.curAng+'deg) scale('+this.curScale+') translateZ(0)';
         }
 
-      // var ar= this.matrixToArray(this.style.getPropertyValue(this.prefixedTransform));
+
     }
 }
 
@@ -191,6 +219,11 @@ class TouchController{
     isMoving:boolean;
     isGestur:boolean;
 
+
+
+    onCenterChanged:Function;
+
+
     private handleMove(x:number,y:number):void{
         if(!this.isMoving){
             if(this.isGestur)this.stopGestures();
@@ -221,12 +254,18 @@ class TouchController{
         if(this.onGestStop) this.onGestStop();
     }
 
+    private setCenter(x:number,y:number){
+       // if(Math.abs(this.centerX-x) + Math.abs(this.centerY+y)>10){
+            this.centerX=x;
+            this.centerY=y;
+        //}
+
+    }
     private handleGesture(x1:number,y1:number,x2:number,y2:number):void{
 
         var dx = x2 - x1;
         var dy = y2 - y1;
-        this.centerX=(x2+x1)/2;
-        this.centerY = (y1+y2)/2;
+        this.setCenter((x2+x1)/2,(y1+y2)/2);
         var dist = Math.sqrt(dx*dx+dy*dy);
         var ang = Math.atan2(dy,dx)*57.2957795;
 

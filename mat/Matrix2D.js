@@ -17,7 +17,6 @@ var view;
             this.y = 0;
             this.scaleX = 1;
             this.scaleY = 1;
-            this.rotation = 0;
             this.skewX = 0;
             this.skewY = 0;
             this.regX = 0;
@@ -26,9 +25,9 @@ var view;
             this.getConcatenatedMatrix = function () {
                 var o = this;
                 var mtx = this.getMatrix();
-                while (o = o.parent) {
-                    mtx.prependMatrix(o.getMatrix());
-                }
+                // while (o = o.parent) {
+                // mtx.prependMatrix(o.getMatrix());
+                //}
                 return mtx;
             };
             this.view = view;
@@ -37,22 +36,27 @@ var view;
             this.origin = origin;
             this.style = window.getComputedStyle(view, null);
         }
+        DisplayObject.prototype.drawCenter = function () {
+            this.center = $('<div>').addClass('dot center').appendTo(this.$view);
+        };
         DisplayObject.prototype.setCenter = function (x, y) {
             this.regX = x;
             this.regY = y;
+            if (this.center)
+                this.center.css({ left: x, top: y });
+            return this;
+        };
+        DisplayObject.prototype.applyReg = function () {
+            this.view.style[this.origin] = this.regX + 'px ' + this.regY + 'px ';
             return this;
         };
         DisplayObject.prototype.setAngle = function (ang) {
-            this.rotation = ang / this.DEG_TO_RAD;
+            // this.rotation= ang*this.DEG_TO_RAD;
             this.angle = ang;
             return this;
         };
         DisplayObject.prototype.setScale = function (x) {
             this.scaleX = x;
-            return this;
-        };
-        DisplayObject.prototype.applyReg = function () {
-            this.view.style[this.origin] = this.regX + 'px ' + this.regY + 'px ';
             return this;
         };
         DisplayObject.prototype.applyMatrix = function () {
@@ -77,9 +81,11 @@ var view;
             return vo;
         };
         DisplayObject.prototype.readMatrixAr = function () {
-            if (!this.mCache)
-                this.mCache = this.matrixToArray(this.style.getPropertyValue(this.transform)).map(Number);
-            return this.mCache;
+            return this.matrixToArray(this.style.getPropertyValue(this.transform)).map(Number);
+            // return this.mCache
+        };
+        DisplayObject.prototype.globalToLocal = function (x, y, pt) {
+            return this.getConcatenatedMatrix().invert().transformPoint(x, y, pt);
         };
         DisplayObject.prototype.localToGlobal = function (x, y, pt) {
             return this.getConcatenatedMatrix().transformPoint(x, y, pt);
@@ -90,7 +96,10 @@ var view;
         DisplayObject.prototype.getMatrix = function () {
             var o = this;
             var mtx = new Matrix2D();
-            return mtx.appendTransform(o.x, o.y, o.scaleX, o.scaleY, o.rotation, o.skewX, o.skewY, o.regX, o.regY);
+            console.log(mtx.toString());
+            var nm = mtx.appendTransform(o.x, o.y, o.scaleX, o.scaleY, o.angle, o.skewX, o.skewY, o.regX, o.regY);
+            console.log(nm.toString());
+            return nm;
         };
         return DisplayObject;
     })();
@@ -114,6 +123,10 @@ var view;
             // this.setValues(a, b, c, d, tx, ty);
             // this.identity = new Matrix2D(1,0,0,1,0,0);
         }
+        Matrix2D.prototype.toString = function () {
+            var vo = this.vo;
+            return vo.a + ',' + vo.b + ',' + vo.c + ',' + vo.d + ',' + vo.tx + ',' + vo.ty;
+        };
         Matrix2D.prototype.setAr = function (ar) {
             var vo = this.vo;
             vo.a = ar[0];
@@ -161,10 +174,10 @@ var view;
             var vo = matrix.vo;
             return this.prepend(vo.a, vo.b, vo.c, vo.d, vo.tx, vo.ty);
         };
-        Matrix2D.prototype.appendTransform = function (x, y, scaleX, scaleY, rotation, skewX, skewY, regX, regY) {
+        Matrix2D.prototype.appendTransform = function (x, y, scaleX, scaleY, angle, skewX, skewY, regX, regY) {
             var vo = this.vo;
-            if (rotation % 360) {
-                var r = rotation * this.DEG_TO_RAD;
+            if (angle % 360) {
+                var r = angle * this.DEG_TO_RAD;
                 var cos = Math.cos(r);
                 var sin = Math.sin(r);
             }

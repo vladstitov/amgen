@@ -6,6 +6,7 @@
 
     <script type="text/javascript" src="../libs/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../libs/svg.min.js"></script>
+    <script type="text/javascript" src="Matrix2D.js"></script>
    <script type="text/javascript" src="Test2.js"></script>
 
 
@@ -103,6 +104,12 @@
             left: 10px;
             top: 100px;
         }
+        #dots{
+            position: absolute;
+            top: 0;
+            left: 0;
+
+        }
         .dot{
             width: 10px;
             height: 10px;
@@ -149,21 +156,26 @@
 </head>
 <body>
 <div id="Container">
-    <div id="ViewPort">
+   <!-- <div id="ViewPort">
         <div id="Building">
             <div id="Axis" class="axis">
                 <div  class="floor" style="background-image:url('2m.png')">
-                 <!--  <img src="Ppath2.png" />-->
+                 &lt;!&ndash;  <img src="Ppath2.png" />&ndash;&gt;
                 </div>
             </div>
             <div id="Axis2" class="axis">
                 <div  class="floor"  style="background-image:url('2m.png')">
-                   <!-- <img draggable="false" src="Ppath2.png" />-->
+                   &lt;!&ndash; <img draggable="false" src="Ppath2.png" />&ndash;&gt;
                 </div>
             </div>
             <div id="overlay"></div>
         </div>
+    </div>-->
+
+    <div id="Building" style="background-image:url('2m.png')" >
+
     </div>
+    <div id="Dots"></div>
 
 </div>
 <div id="tools">

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name=viewport content="width=device-width,  initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0">
+
+    <script type="text/javascript" src="../libs/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../libs/svg.min.js"></script>
+
+
+
+    <title></title>
+    <style>
+        html, body{
+            overflow: hidden;
+        }
+        .abs0 {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #FPS{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            padding: 5px;
+            font-size: x-large;
+        }
+
+
+
+        #tools{
+            position: absolute;
+            left: 10px;
+            top: 100px;
+            background-color: rgba(255,255,255,0.7);
+
+        }
+
+        .dot{
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background-color: black;
+            border-radius: 50% 50%;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .dot.colide{
+            color: red;
+        }
+        .dot.center{
+            background-color: red;
+            border: medium black solid;
+            border-radius: 50% 50%;
+           -webkit-transform:  translate(-50%,-50%);
+
+        }
+        .dot>div{
+            display: inline-block;
+            border: thin black solid;
+           display: none;
+        }
+
+        input.vertical {
+            -webkit-appearance: slider-vertical;
+            writing-mode: vertical-lr;
+            width: 20px;
+            height: 500px;
+            display: inline;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="Content" class="abs0">
+    <style>
+        #Building{
+            width: 1000px;
+            height: 1000px;
+        }
+    </style>
+
+    <div id="ViewPort">
+                <div id="Building" class="abs0" style="background-image:url('2m.png')" >
+
+                </div>
+    </div>
+
+    <div id="Dots" class="abs0">
+
+    </div>
+</div>
+
+
+
+<div id="tools">
+    <div>
+        <label for="chkAll">Show All</label>
+        <input type="checkbox" data-id="chkAll" id="chkAll"/>
+    </div>
+    <div>
+        S
+        <input id="slider-1" class="vertical" name="slider-1" data-id="scale" type="range" min="0"  max="100" value="50" step="1" />
+            R <input class="vertical" data-id="rotate" type="range"  min="0"  max="100" value="50" step="1">
+       <!-- L <input class="vertical" data-id="skew" type="range"  min="0"  max="100" value="50" step="1"><br/>-->
+    </div>
+
+</div>
+
+<div id="FPS">
+
+
+</div>
+</body>
+<script type="text/javascript" src="Tools.js"></script>
+<script type="text/javascript" src="TouchController2.js"></script>
+<script type="text/javascript" src="Matrix2D.js"></script>
+<script type="text/javascript" src="Test2.js"></script>
+</html>

@@ -2,9 +2,11 @@
  * Created by Vlad on 8/18/2015.
  */
 ///<reference path="../libs/typings/jquery.d.ts" />
+///<reference path="Matrix2D.ts" />
 var Test2 = (function () {
     function Test2() {
         var _this = this;
+        // viewPort:HTMLElement;
         this.posX = 0;
         this.posY = 0;
         this.startX = 0;
@@ -16,16 +18,10 @@ var Test2 = (function () {
         this.total = 0;
         this.last = 0;
         this.count = 0;
-        if ('transform' in document.body.style) {
-            this.prefixedTransform = 'transform';
-        }
-        else if ('webkitTransform' in document.body.style) {
-            this.prefixedTransform = 'webkitTransform';
-        }
-        this.building = document.getElementById('Building');
-        this.viewPort = document.getElementById('ViewPort');
-        this.style = window.getComputedStyle(this.building, null);
-        // this.startTimer();
+        this.building = new view.DisplayObject(document.getElementById('Building'), 'webkitTransform', 'webkitTransformOrigin');
+        // this.viewPort = document.getElementById('ViewPort');
+        this.dots = new view.DisplayObject(document.getElementById('Dots'), 'webkitTransform', 'webkitTransformOrigin');
+        //  $(this.viewPort).click((evt)=>this.onViewPortClick(evt));
         this.tools = new Tools();
         this.tools.onChange = function () { return _this.onToolsChage(); };
         this.touch = new TouchController();
@@ -33,18 +29,43 @@ var Test2 = (function () {
         this.touch.onMoveEnd = function () { return _this.onMoveEnd(); };
         this.touch.onGestStart = function () { return _this.onGestStart(); };
         this.touch.onGestStop = function () { return _this.onGestStop(); };
+        this.curAng = 0;
+        this.curScale = 1;
         // this.touch.onMove=(dx,dy)=>this.
-        this.onAnimationFrame(0);
+        this.setCenter(200, 200);
+        //  this.dots.$view.offset({top:800,left:800});
+        //  $('#Dots').offset({top:800,left:800})
+        this.dot100 = $('<div>').addClass('dot').text('100x100').offset({ left: 100, top: 100 }).appendTo(this.dots.$view);
+        var p = this.building.localToGlobal(100, 100);
+        console.log(p);
+        this.dot100.css({ top: p.y, left: p.x });
     }
-    Test2.prototype.oncenterChaged = function (x, y) {
-        $(this.building).css('transform-origin', x + 'px ' + y + 'px');
+    Test2.prototype.onViewPortClick = function (evt) {
+        var x = evt.clientX;
+        var y = evt.clientY;
+        //  var  dot=$('<div>').addClass('dot').offset({left:p.x,top:p.y});
+        // $(this.building).append(dot);
+    };
+    Test2.prototype.setCenter = function (x, y) {
+        x = x - this.posX;
+        y = y - this.posY;
+        //  var p={x:x,y:y};
+        //   var m = this.invert(this.getMatrix());
+        //   var p = this.transformPoint(x,y,m);
+        //  console.log(m);
+        this.building.setCenter(x, y).applyReg();
+        // this.building.style['webkitTransformOrigin']=  p.x+'px '+p.y+'px';
+        // $(this.building).css('transform-origin', p.x+'px '+p.y+'px');
     };
     Test2.prototype.onToolsChage = function () {
         console.log('change');
-        this.oncenterChaged(50, 50);
         this.curAng = this.tools.angle;
         this.curScale = this.tools.scale;
-        this.building.style[this.prefixedTransform] = 'translate(0,0) rotate(' + this.curAng + 'deg) scale(' + this.curScale + ') translateZ(0)';
+        this.building.setAngle(this.curAng);
+        this.building.setScale(this.curScale).applyRS();
+        var p = this.building.localToGlobal(500, 500);
+        console.log(p);
+        this.dot100.css({ left: p.x, top: p.y });
     };
     Test2.prototype.onGestStop = function () {
         this.isRS = false;
@@ -53,6 +74,9 @@ var Test2 = (function () {
         console.log(' onGestStart ');
         this.startAng = this.curAng;
         this.startScale = this.curScale;
+        var cX = this.touch.centerX;
+        var cy = this.touch.centerY;
+        this.setCenter(cX, cy);
         this.isRS = true;
     };
     Test2.prototype.onMoveEnd = function () {
@@ -81,9 +105,6 @@ var Test2 = (function () {
         requestAnimationFrame(function (st) { return _this.onAnimationFrame(st); });
         this.render();
     };
-    Test2.prototype.matrixToArray = function (str) {
-        return str.split('(')[1].split(')')[0].split(',');
-    };
     Test2.prototype.stopTimer = function () {
         clearInterval(this.timer);
     };
@@ -102,13 +123,10 @@ var Test2 = (function () {
     Test2.prototype.render = function () {
         if (this.isPoz) {
             this.calcPosition();
-            this.viewPort.style[this.prefixedTransform] = 'translate(' + this.posX + 'px,' + this.posY + 'px) rotate(0) scale(1) translateZ(0)';
         }
         if (this.isRS) {
             this.calcZR();
-            this.building.style[this.prefixedTransform] = 'translate(0,0) rotate(' + this.curAng + 'deg) scale(' + this.curScale + ') translateZ(0)';
         }
-        // var ar= this.matrixToArray(this.style.getPropertyValue(this.prefixedTransform));
     };
     return Test2;
 })();
@@ -155,11 +173,16 @@ var TouchController = (function () {
         if (this.onGestStop)
             this.onGestStop();
     };
+    TouchController.prototype.setCenter = function (x, y) {
+        // if(Math.abs(this.centerX-x) + Math.abs(this.centerY+y)>10){
+        this.centerX = x;
+        this.centerY = y;
+        //}
+    };
     TouchController.prototype.handleGesture = function (x1, y1, x2, y2) {
         var dx = x2 - x1;
         var dy = y2 - y1;
-        this.centerX = (x2 + x1) / 2;
-        this.centerY = (y1 + y2) / 2;
+        this.setCenter((x2 + x1) / 2, (y1 + y2) / 2);
         var dist = Math.sqrt(dx * dx + dy * dy);
         var ang = Math.atan2(dy, dx) * 57.2957795;
         if (!this.isGestur) {
