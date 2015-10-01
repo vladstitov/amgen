@@ -4,8 +4,8 @@
     ///<reference path="Test3.ts" />
 
 module view{
-    export class DisplaySimple{
-        parent:DisplaySimple;
+    export class DisplayContainer{
+        parent:DisplayContainer;
         posX:number=0;
         posY:number=0;
         scaleX:number=1;
@@ -54,54 +54,66 @@ module view{
             this.center = $('<div>').addClass('dot center').appendTo(this.$view);
         }
 
-        setCenter(x:number,y:number):DisplaySimple{
+        setCenter(x:number,y:number):DisplayContainer{
             this.regX = x;
             this.regY = y;
             if(this.center)this.center.css({left:x,top:y});
             return this;
         }
 
-        applyReg():DisplaySimple{
+        applyReg():DisplayContainer{
             this.view.style[this.origin]=this.regX+'px '+this.regY+'px ';
             return this;
         }
 
-        setAngle(ang:number):DisplaySimple{
+        setAngle(ang:number):DisplayContainer{
             // this.rotation= ang*this.DEG_TO_RAD;
             this.angle=ang;
             return this
         }
 
-        setScale(x:number):DisplaySimple{
+        setScale(x:number):DisplayContainer{
             this.scaleX = x;
             return this;
         }
 
-        setAS(a:number,s:number):void{
+        setRS(a:number,s:number):void{
             this.scale=s;
             this.scaleX=s;
             this.scaleY=s;
             this.angle=a;
             this.apply();
         }
-
         setXY(x:number,y:number):void{
             this.posX=x;
             this.posY=y;
             this.apply();
         }
+        applyMatrix():DisplayContainer{
 
-        apply():DisplaySimple{
-            this.view.style[this.transform]= 'translate('+this.posX+'px,'+this.posY+'px) rotate('+this.angle+'deg) scale('+this.scale+') translateZ(0)';
+            return this;
+        }
+        apply():DisplayContainer{
+            if(this.asMatrix){
+                var m= new Matrix2D();
+                m.rotate(this.angle);
+                m.scale(this.scale,this.scale);
+                this.view.style[this.transform]= 'matrix('+m.toString()+')';
+            }
+            else this.view.style[this.transform]= 'translate('+this.posX+'px,'+this.posY+'px) rotate('+this.angle+'deg) scale('+this.scale+') translateZ(0)';
             this.ar=null;
             return this;
         }
+
+
+
+
 
         private matrixToArray(str:string):string[] {
             return str.split('(')[1].split(')')[0].split(',');
         }
         private mCache:number[]
-/*
+
         readMatrixVO():MatrixVO{
             var vo=new MatrixVO();
             var ar=this.readMatrixAr();
@@ -113,7 +125,6 @@ module view{
             vo.ty = ar[5];
             return vo
         }
-        */
         readMatrixAr():number[]{
            // var trans = this.style.getPropertyValue('-webkit-transform');
           //  console.log(trans);
@@ -122,18 +133,14 @@ module view{
         }
 
         toGlobal(x:number, y:number):Point {
-        //console.log(this.regX,this.regY);
-            x=x-this.regX;
-            y=y-this.regY;
         if(!this.ar) this.ar = this.readMatrixAr();
         var ar:number[] = this.ar;
             var pt =  new Point();
-            pt.x = x * ar[0] + y * ar[2] + ar[4]+this.regX;
-            pt.y = x * ar[1] + y * ar[3] + ar[5]+this.regY;
+            pt.x = x * ar[0] + y * ar[2] + ar[4];
+            pt.y = x * ar[1] + y * ar[3] + ar[5];
             return pt;
         }
 
-      /*
         globalToLocal(x:number, y:number, pt?:Point) {
             return this.getConcatenatedMatrix().invert().transformPoint(x,y, pt);
         }
@@ -145,26 +152,25 @@ module view{
         }
 
         getConcatenatedMatrix = function():Matrix2D {
-            var o:DisplaySimple = this;
+            var o:DisplayContainer = this;
             var mtx:Matrix2D = this.getMatrix();
             // while (o = o.parent) {
             // mtx.prependMatrix(o.getMatrix());
             //}
             return mtx;
         }
-        /*
+
         getMatrix() {
-            var o:DisplaySimple = this;
+            var o:DisplayContainer = this;
             var mtx:Matrix2D =  new Matrix2D();
             console.log(mtx.toString());
             var nm = mtx.appendTransform(o.posX, o.posY, o.scaleX, o.scaleY, o.angle, o.skewX, o.skewY, o.regX, o.regY);
             console.log(nm.toString());
             return nm
         }
-
-
+        /*
          getMatrix(matrix:Matrix2D) {
-         var o:DisplaySimple = this;
+         var o:DisplayContainer = this;
          var mtx:Matrix2D = matrix && matrix.identity() || new Matrix2D(1,0,0,1,0,0);
          return o.transformMatrix ?  mtx.copy(o.transformMatrix) : mtx.appendTransform(o.x, o.y, o.scaleX, o.scaleY, o.rotation, o.skewX, o.skewY, o.regX, o.regY);
          }

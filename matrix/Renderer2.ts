@@ -6,19 +6,19 @@
  */
 
 ///<reference path="Test3.ts" />
-class Renderer3{
+class Renderer2{
     private prefixedTransform:string ='webkitTransform';
     // viewPort:HTMLElement;
     posX:number=0;
     posY:number=0;
    // tools:ui.Tools;
     touch:ui.TouchController3;
-    building: view.DisplaySimple;
+    building: view.DisplayContainer;
     buildingEl:HTMLElement;
     viewPortEl:HTMLElement;
-    viewPort:view.DisplaySimple;
+    viewPort:view.DisplayContainer;
 
-    dots:view.DisplaySimple;
+    dots:view.DisplayContainer;
     consol:JQuery
 
     swap:boolean = false;
@@ -29,10 +29,9 @@ class Renderer3{
         this.viewPortEl =  document.getElementById('ViewPort');
 
 
-        this.building = new view.DisplaySimple(this.buildingEl,'webkitTransform','webkitTransformOrigin','building');
-
-
-        this.viewPort = new view.DisplaySimple(this.viewPortEl,'webkitTransform','webkitTransformOrigin','viewport');
+        this.building = new view.DisplayContainer(this.buildingEl,'webkitTransform','webkitTransformOrigin','building');
+        this.building.applyReg();
+        this.viewPort = new view.DisplayContainer(this.viewPortEl,'webkitTransform','webkitTransformOrigin','viewport');
         this.viewPort.applyReg();
        // this.building.drawCenter();
         var ar:any[]=[{x:100,y:100},{x:800,y:100},{x:800,y:800},{x:100,y:800}]
@@ -44,7 +43,7 @@ class Renderer3{
         }
 
         // this.viewPort = document.getElementById('ViewPort');
-        this.dots = new view.DisplaySimple(document.getElementById('Dots'),'webkitTransform','webkitTransformOrigin','dotA');
+        this.dots = new view.DisplayContainer(document.getElementById('Dots'),'webkitTransform','webkitTransformOrigin','dotA');
 
         // $('#Content').click((evt)=>this.onViewPortClick(evt));
        // this.tools = new ui.Tools();
@@ -219,8 +218,8 @@ class Renderer3{
         if(this.isRS){
             this.stopPos();
             this.calcZR();
-            this.building.setAS(this.curAng,this.curScale);
-           // this.building.readMatrixAr();
+            this.building.setRS(this.curAng,this.curScale);
+            this.building.readMatrixAr();
            // if(this.swap)this.viewPortEl.style[this.prefixedTransform]= 'translate(0,0) rotate('+this.curAng+'deg) scale('+this.curScale+') translateZ(0)'
            // else this.buildingEl.style[this.prefixedTransform]= 'translate(0,0) rotate('+this.curAng+'deg) scale('+this.curScale+') translateZ(0)';
         }

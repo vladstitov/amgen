@@ -7,10 +7,18 @@
 ///<reference path="Renderer3.ts" />
 ///<reference path="DisplayContainer.ts" />
 ///<reference path="DisplaySimple.ts" />
+///<reference path="utils.ts" />
 var Test3 = (function () {
     function Test3() {
         var _this = this;
         this.render = new Renderer3();
+        this.render.building.setCenter(500, 500);
+        this.render.building.applyReg();
+        var tools = new ui.Tools();
+        tools.onChange = function (angle, scale, skew) {
+            console.log(angle, scale);
+            _this.render.building.setAS(angle, scale);
+        };
         var ar = [{ x: 100, y: 100 }, { x: 800, y: 100 }, { x: 800, y: 800 }, { x: 100, y: 800 }];
         for (var i = 0, n = ar.length; i < n; i++) {
             var p = ar[i];

@@ -4,12 +4,6 @@
  */
     ///<reference path="../libs/typings/jquery.d.ts" />
   module view {
-
-     export class Point{
-                x:number;
-                y:number;
-    }
-
     export class MatrixVO{
         a:number=1;
         b:number=0;

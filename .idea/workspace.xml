@@ -5,48 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19b6262a-e716-46ac-8b25-8dac8cd22c51" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplaySimple.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Matrix2D.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer3.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Test3.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Test3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Test3.ts" />
-      <change type="DELETED" beforePath="C:\wamp\www\test\amgen\mat\Matrix2D.js.map" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\test\amgen\mat\Renderer.js.map" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\test\amgen\mat\Test3.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\test\amgen\mat\Test3.js.map" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\test\amgen\mat\Test3.ts" afterPath="" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\2m.png" afterPath="$PROJECT_DIR$/matrix/2m.png" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Matrix2.html" afterPath="$PROJECT_DIR$/matrix/Matrix2.html" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Matrix2D.js" afterPath="$PROJECT_DIR$/matrix/Matrix2D.js" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Matrix2D.ts" afterPath="$PROJECT_DIR$/matrix/Matrix2D.ts" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Matrix3.html" afterPath="$PROJECT_DIR$/matrix/Matrix3.html" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Renderer.js" afterPath="$PROJECT_DIR$/matrix/Renderer.js" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Renderer.ts" afterPath="$PROJECT_DIR$/matrix/Renderer.ts" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Test2.js" afterPath="$PROJECT_DIR$/matrix/Test2.js" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Test2.js.map" afterPath="$PROJECT_DIR$/matrix/Test2.js.map" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Test2.ts" afterPath="$PROJECT_DIR$/matrix/Test2.ts" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Tools.js" afterPath="$PROJECT_DIR$/matrix/Tools.js" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Tools.js.map" afterPath="$PROJECT_DIR$/matrix/Tools.js.map" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\Tools.ts" afterPath="$PROJECT_DIR$/matrix/Tools.ts" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\TouchController.js" afterPath="$PROJECT_DIR$/matrix/TouchController.js" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\TouchController.js.map" afterPath="$PROJECT_DIR$/matrix/TouchController.js.map" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\TouchController.ts" afterPath="$PROJECT_DIR$/matrix/TouchController.ts" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\TouchController2.js" afterPath="$PROJECT_DIR$/matrix/TouchController2.js" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\TouchController2.js.map" afterPath="$PROJECT_DIR$/matrix/TouchController2.js.map" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\TouchController2.ts" afterPath="$PROJECT_DIR$/matrix/TouchController2.ts" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\TouchController3.js" afterPath="$PROJECT_DIR$/matrix/TouchController3.js" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\TouchController3.js.map" afterPath="$PROJECT_DIR$/matrix/TouchController3.js.map" />
-      <change type="MOVED" beforePath="C:\wamp\www\test\amgen\mat\TouchController3.ts" afterPath="$PROJECT_DIR$/matrix/TouchController3.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/Matrix2D.js.map" afterPath="$PROJECT_DIR$/utils/Matrix2D.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/Matrix2D.js" afterPath="$PROJECT_DIR$/utils/Matrix2D.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/Matrix2D.ts" afterPath="$PROJECT_DIR$/utils/Matrix2D.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/MatrixTest.html" afterPath="$PROJECT_DIR$/utils/MatrixTest.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/MatrixTest.js.map" afterPath="$PROJECT_DIR$/utils/MatrixTest.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/MatrixTest.js" afterPath="$PROJECT_DIR$/utils/MatrixTest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/MatrixTest.ts" afterPath="$PROJECT_DIR$/utils/MatrixTest.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplayContainer.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplayContainer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplayContainer.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplaySimple.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplaySimple.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer2.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer2.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer3.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/utils.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/utils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/utils.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/DisplaySimple.ts" afterPath="$PROJECT_DIR$/matrix/DisplaySimple.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Matrix2D.js.map" afterPath="$PROJECT_DIR$/matrix/Matrix2D.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Matrix2D.js" afterPath="$PROJECT_DIR$/matrix/Matrix2D.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Matrix2D.ts" afterPath="$PROJECT_DIR$/matrix/Matrix2D.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Matrix3.html" afterPath="$PROJECT_DIR$/matrix/Matrix3.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Renderer3.ts" afterPath="$PROJECT_DIR$/matrix/Renderer3.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Test3.js.map" afterPath="$PROJECT_DIR$/matrix/Test3.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Test3.js" afterPath="$PROJECT_DIR$/matrix/Test3.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Test3.ts" afterPath="$PROJECT_DIR$/matrix/Test3.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Tools.js.map" afterPath="$PROJECT_DIR$/matrix/Tools.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Tools.js" afterPath="$PROJECT_DIR$/matrix/Tools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Tools.ts" afterPath="$PROJECT_DIR$/matrix/Tools.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="amgen.iws" />
@@ -68,11 +51,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Test3.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Test3.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/matrix/Test3.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1632653">
-              <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -83,8 +66,8 @@
       <file leaf-file-name="Renderer3.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/matrix/Renderer3.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.4655173">
-              <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -93,8 +76,8 @@
       <file leaf-file-name="Matrix3.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/matrix/Matrix3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="90.23077">
-              <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+            <state vertical-scroll-proportion="-22.5">
+              <caret line="199" column="55" selection-start-line="199" selection-start-column="55" selection-end-line="199" selection-end-column="55" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -102,12 +85,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DisplaySimple.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DisplaySimple.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/matrix/DisplaySimple.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="152" column="10" selection-start-line="152" selection-start-column="10" selection-end-line="152" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.43509614">
+              <caret line="131" column="59" selection-start-line="131" selection-start-column="59" selection-end-line="131" selection-end-column="59" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/matrix/utils.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+              <folding>
+                <element signature="n#!!doc;n#view#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -167,10 +162,13 @@
         <option value="$PROJECT_DIR$/utils/MatrixTest.ts" />
         <option value="$PROJECT_DIR$/matrix/Renderer2.ts" />
         <option value="$PROJECT_DIR$/matrix/DisplayContainer.ts" />
-        <option value="$PROJECT_DIR$/matrix/DisplaySimple.ts" />
+        <option value="$PROJECT_DIR$/matrix/utils.ts" />
+        <option value="$PROJECT_DIR$/matrix/Matrix2D.ts" />
         <option value="$PROJECT_DIR$/matrix/Matrix3.html" />
+        <option value="$PROJECT_DIR$/matrix/Tools.ts" />
         <option value="$PROJECT_DIR$/matrix/Renderer3.ts" />
         <option value="$PROJECT_DIR$/matrix/Test3.ts" />
+        <option value="$PROJECT_DIR$/matrix/DisplaySimple.ts" />
       </list>
     </option>
   </component>
@@ -182,8 +180,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="3017" />
-    <option name="y" value="8" />
+    <option name="x" value="16" />
     <option name="width" value="1900" />
     <option name="height" value="992" />
   </component>
@@ -316,22 +313,30 @@
       <option name="number" value="Default" />
       <updated>1436281188034</updated>
     </task>
+    <task id="LOCAL-00001" summary="Display simple">
+      <created>1443719091800</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1443719091800</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3017" y="8" width="1900" height="992" extended-state="0" />
+    <frame x="16" y="0" width="1900" height="992" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24436091" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript Compiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25667828" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329849" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24436091" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329849" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -353,6 +358,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Display simple" />
+    <option name="LAST_COMMIT_MESSAGE" value="Display simple" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="1" />
@@ -360,13 +369,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/world.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/Matrix.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -574,13 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/Tools.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/matrix/Matrix2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.269231">
@@ -621,13 +616,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/Matrix2D.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.564648">
-          <caret line="200" column="9" selection-start-line="200" selection-start-column="9" selection-end-line="200" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -686,32 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/DisplaySimple.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="152" column="10" selection-start-line="152" selection-start-column="10" selection-end-line="152" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/Matrix3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="90.23077">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/Renderer3.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4655173">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/matrix/Renderer2.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12244898">
@@ -720,13 +682,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/Matrix2D.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12259615">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/utils.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!doc;n#view#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/Matrix3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.5">
+          <caret line="199" column="55" selection-start-line="199" selection-start-column="55" selection-end-line="199" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/Tools.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32572114">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/Renderer3.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/matrix/Test3.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1632653">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/DisplaySimple.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43509614">
+          <caret line="131" column="59" selection-start-line="131" selection-start-column="59" selection-end-line="131" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>

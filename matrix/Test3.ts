@@ -7,6 +7,7 @@
 ///<reference path="Renderer3.ts" />
 ///<reference path="DisplayContainer.ts" />
 ///<reference path="DisplaySimple.ts" />
+///<reference path="utils.ts" />
 
 
 class Test3{
@@ -14,6 +15,15 @@ class Test3{
      render:Renderer3
     constructor(){
         this.render = new Renderer3();
+        this.render.building.setCenter(500,500);
+        this.render.building.applyReg();
+
+
+        var tools:ui.Tools = new ui.Tools();
+        tools.onChange=(angle,scale,skew)=>{
+            console.log(angle,scale);
+            this.render.building.setAS(angle,scale)
+        }
 
         var ar:any[]=[{x:100,y:100},{x:800,y:100},{x:800,y:800},{x:100,y:800}]
 
