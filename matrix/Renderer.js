@@ -24,7 +24,7 @@ var Renderer = (function () {
         this.consol = $('#Console');
         this.buildingView = document.getElementById('Building');
         this.viewPort = document.getElementById('ViewPort');
-        this.building = new view.DisplayObject(document.getElementById('Building'), 'webkitTransform', 'webkitTransformOrigin');
+        this.building = new view.DisplayObject(document.getElementById('Building'), 'webkitTransform', 'webkitTransformOrigin', 'Building');
         this.building.drawCenter();
         var ar = [{ x: 100, y: 100 }, { x: 800, y: 100 }, { x: 800, y: 800 }, { x: 100, y: 800 }];
         for (var i = 0, n = ar.length; i < n; i++) {
@@ -32,7 +32,7 @@ var Renderer = (function () {
             $('<dot>').addClass('dot').text('x: ' + p.x + ' y: ' + p.y).css({ left: p.x, top: p.y }).appendTo(this.building.$view);
         }
         // this.viewPort = document.getElementById('ViewPort');
-        this.dots = new view.DisplayObject(document.getElementById('Dots'), 'webkitTransform', 'webkitTransformOrigin');
+        this.dots = new view.DisplayObject(document.getElementById('Dots'), 'webkitTransform', 'webkitTransformOrigin', 'Dots');
         // $('#Content').click((evt)=>this.onViewPortClick(evt));
         // this.tools = new ui.Tools();
         this.touch = new ui.TouchController3(this.buildingView, $('#Indicator'));

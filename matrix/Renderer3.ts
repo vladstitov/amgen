@@ -6,27 +6,34 @@
  */
 
 ///<reference path="Test3.ts" />
-class Renderer{
+class Renderer3{
     private prefixedTransform:string ='webkitTransform';
     // viewPort:HTMLElement;
     posX:number=0;
     posY:number=0;
    // tools:ui.Tools;
     touch:ui.TouchController3;
-    building: view.DisplayObject;
-    buildingView:HTMLElement;
-    viewPort:HTMLElement;
-    dots:view.DisplayObject;
+    building: view.DisplaySimple;
+    buildingEl:HTMLElement;
+    viewPortEl:HTMLElement;
+    viewPort:view.DisplaySimple;
+
+    dots:view.DisplaySimple;
     consol:JQuery
 
+    swap:boolean = false;
     constructor(){
         this.consol=$('#Console');
 
-        this.buildingView= document.getElementById('Building');
-        this.viewPort =  document.getElementById('ViewPort');
+        this.buildingEl =  document.getElementById('Building');
+        this.viewPortEl =  document.getElementById('ViewPort');
 
-        this.building = new view.DisplayObject(document.getElementById('Building'),'webkitTransform','webkitTransformOrigin');
-        this.building.drawCenter();
+
+        this.building = new view.DisplaySimple(this.buildingEl,'webkitTransform','webkitTransformOrigin','building');
+        this.building.applyReg();
+        this.viewPort = new view.DisplaySimple(this.viewPortEl,'webkitTransform','webkitTransformOrigin','viewport');
+        this.viewPort.applyReg();
+       // this.building.drawCenter();
         var ar:any[]=[{x:100,y:100},{x:800,y:100},{x:800,y:800},{x:100,y:800}]
 
         for (var i = 0, n = ar.length; i < n; i++) {
@@ -36,12 +43,12 @@ class Renderer{
         }
 
         // this.viewPort = document.getElementById('ViewPort');
-        this.dots = new view.DisplayObject(document.getElementById('Dots'),'webkitTransform','webkitTransformOrigin');
+        this.dots = new view.DisplaySimple(document.getElementById('Dots'),'webkitTransform','webkitTransformOrigin','dotA');
 
         // $('#Content').click((evt)=>this.onViewPortClick(evt));
        // this.tools = new ui.Tools();
 
-        this.touch = new ui.TouchController3(this.buildingView,$('#Indicator'));
+        this.touch = new ui.TouchController3(this.viewPortEl,$('#Indicator'));
         this.touch.onMoveStart=()=>this.onMoveStart();
         this.touch.onMoveEnd = ()=>this.onMoveEnd();
 
@@ -87,8 +94,6 @@ class Renderer{
 
     private startX:number=0;
     private startY:number=0;
-
-
 
     private startScale:number=1;
     private startAng:number=0;
@@ -142,7 +147,6 @@ class Renderer{
         if(this.isActive)requestAnimationFrame((st)=>this.onAnimationFrame(st));
         this.render();
     }
-
 
     timer:number;
     stopTimer():void{
@@ -204,18 +208,20 @@ class Renderer{
 
 
     render():void{
-        // console.log(this.posX+ '   '+ this.isPoz);
         this.calcPosition();
         if(this.isPoz){
-         //  this.stopGest();
-            this.viewPort.style[this.prefixedTransform]= 'translate('+this.posX+'px,'+this.posY+'px) rotate(0) scale(1) translateZ(0)';
+         this.viewPort.setXY(this.posX,this.posY);
+           // if(this.swap)this.buildingEl.style[this.prefixedTransform]= 'translate('+this.posX+'px,'+this.posY+'px) rotate(0) scale(1) translateZ(0)';
+           // else  this.viewPortEl.style[this.prefixedTransform]= 'translate('+this.posX+'px,'+this.posY+'px) rotate(0) scale(1) translateZ(0)';
         }
 
         if(this.isRS){
             this.stopPos();
             this.calcZR();
-            // this.mCache=null;
-            this.buildingView.style[this.prefixedTransform]= 'translate(0,0) rotate('+this.curAng+'deg) scale('+this.curScale+') translateZ(0)';
+            this.building.setRS(this.curAng,this.curScale);
+            this.building.readMatrixAr();
+           // if(this.swap)this.viewPortEl.style[this.prefixedTransform]= 'translate(0,0) rotate('+this.curAng+'deg) scale('+this.curScale+') translateZ(0)'
+           // else this.buildingEl.style[this.prefixedTransform]= 'translate(0,0) rotate('+this.curAng+'deg) scale('+this.curScale+') translateZ(0)';
         }
 
 

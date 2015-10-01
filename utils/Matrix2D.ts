@@ -12,8 +12,8 @@
 
 
 
-    export class DisplayObject{
-        parent:DisplayObject;
+    export class DisplayObject0{
+        parent:DisplayObject0;
         x:number=0;
         y:number=0;
         scaleX:number=1;
@@ -45,31 +45,31 @@
         }
 
 
-        setCenter(x:number,y:number):DisplayObject{
+        setCenter(x:number,y:number):DisplayObject0{
             this.regX = x;
             this.regY = y;
             return this;
         }
 
 
-        setAngle(ang:number):DisplayObject{
+        setAngle(ang:number):DisplayObject0{
             this.rotation= ang/this.DEG_TO_RAD;
             this.angle=ang;
             return this
         }
 
-        setScale(x:number):DisplayObject{
+        setScale(x:number):DisplayObject0{
             this.scaleX = x;
             return this;
         }
-        applyReg():DisplayObject{
+        applyReg():DisplayObject0{
             this.view.style[this.origin]=this.regX+'px '+this.regY+'px ';
             return this;
         }
-        applyMatrix():DisplayObject{
+        applyMatrix():DisplayObject0{
             return this;
         }
-        applyRS():DisplayObject{
+        applyRS():DisplayObject0{
             this.view.style[this.transform]= 'translate(0,0) rotate('+this.angle+'deg) scale('+this.scaleX+') translateZ(0)';
             return this;
         }
@@ -105,7 +105,7 @@
         }
 
         getConcatenatedMatrix = function():Matrix2D {
-            var o:DisplayObject = this;
+            var o:DisplayObject0 = this;
             var mtx:Matrix2D = this.getMatrix();
             while (o = o.parent) {
                 mtx.prependMatrix(o.getMatrix());
@@ -114,13 +114,13 @@
         }
 
         getMatrix() {
-            var o:DisplayObject = this;
+            var o:DisplayObject0 = this;
             var mtx:Matrix2D =  new Matrix2D();
             return mtx.appendTransform(o.x, o.y, o.scaleX, o.scaleY, o.rotation, o.skewX, o.skewY, o.regX, o.regY);
         }
 /*
         getMatrix(matrix:Matrix2D) {
-            var o:DisplayObject = this;
+            var o:DisplayObject0 = this;
             var mtx:Matrix2D = matrix && matrix.identity() || new Matrix2D(1,0,0,1,0,0);
             return o.transformMatrix ?  mtx.copy(o.transformMatrix) : mtx.appendTransform(o.x, o.y, o.scaleX, o.scaleY, o.rotation, o.skewX, o.skewY, o.regX, o.regY);
         }

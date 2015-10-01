@@ -11,7 +11,7 @@ class MatrixTest{
     private transform:string;
     private div:HTMLElement;
     constructor(){
-        var div = document.getElementById('Container');
+        var div = document.getElementById('Building');
         console.log(div.style);
         this.div= div;
         var prefixes = ['', '-moz-', '-webkit-', '-o-', '-ms-'];
@@ -39,7 +39,9 @@ class MatrixTest{
         var j = 0;
 
         for (var i = 0; i < 1000; i++) {
-            arr1.push(new Matrix().rotate(1,1,i).scale(i/1000,i/1000,i).translate(1, 1) + '');
+            var m = new Matrix().rotate(1,1,i).scale(i/1000,i/1000,i).translate(1,1);
+            console.log(m);
+            arr1.push(m+ '');
             arr2.push('rotateZ('+i+'deg).translate('+i+'px, '+i+'px)');
         }
 
@@ -62,8 +64,10 @@ class MatrixTest{
             this.counter=0;
             this.total=0;
         }
-        console.log(this.current);
+        console.log(this.ar1[this.current]);
+
         this.div.style[this.transform] = this.ar1[this.current];
+
         this.current++;
         if(this.current<this.max)requestAnimationFrame((ts)=>this.onAnimationFrame(ts));
 

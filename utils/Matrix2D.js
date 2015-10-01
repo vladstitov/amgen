@@ -11,8 +11,8 @@ var view;
         return Point;
     })();
     _view.Point = Point;
-    var DisplayObject = (function () {
-        function DisplayObject(view, transform, origin) {
+    var DisplayObject0 = (function () {
+        function DisplayObject0(view, transform, origin) {
             this.x = 0;
             this.y = 0;
             this.scaleX = 1;
@@ -37,35 +37,35 @@ var view;
             this.origin = origin;
             this.style = window.getComputedStyle(view, null);
         }
-        DisplayObject.prototype.setCenter = function (x, y) {
+        DisplayObject0.prototype.setCenter = function (x, y) {
             this.regX = x;
             this.regY = y;
             return this;
         };
-        DisplayObject.prototype.setAngle = function (ang) {
+        DisplayObject0.prototype.setAngle = function (ang) {
             this.rotation = ang / this.DEG_TO_RAD;
             this.angle = ang;
             return this;
         };
-        DisplayObject.prototype.setScale = function (x) {
+        DisplayObject0.prototype.setScale = function (x) {
             this.scaleX = x;
             return this;
         };
-        DisplayObject.prototype.applyReg = function () {
+        DisplayObject0.prototype.applyReg = function () {
             this.view.style[this.origin] = this.regX + 'px ' + this.regY + 'px ';
             return this;
         };
-        DisplayObject.prototype.applyMatrix = function () {
+        DisplayObject0.prototype.applyMatrix = function () {
             return this;
         };
-        DisplayObject.prototype.applyRS = function () {
+        DisplayObject0.prototype.applyRS = function () {
             this.view.style[this.transform] = 'translate(0,0) rotate(' + this.angle + 'deg) scale(' + this.scaleX + ') translateZ(0)';
             return this;
         };
-        DisplayObject.prototype.matrixToArray = function (str) {
+        DisplayObject0.prototype.matrixToArray = function (str) {
             return str.split('(')[1].split(')')[0].split(',');
         };
-        DisplayObject.prototype.readMatrixVO = function () {
+        DisplayObject0.prototype.readMatrixVO = function () {
             var vo = new MatrixVO();
             var ar = this.readMatrixAr();
             vo.a = ar[0];
@@ -76,25 +76,25 @@ var view;
             vo.ty = ar[5];
             return vo;
         };
-        DisplayObject.prototype.readMatrixAr = function () {
+        DisplayObject0.prototype.readMatrixAr = function () {
             if (!this.mCache)
                 this.mCache = this.matrixToArray(this.style.getPropertyValue(this.transform)).map(Number);
             return this.mCache;
         };
-        DisplayObject.prototype.localToGlobal = function (x, y, pt) {
+        DisplayObject0.prototype.localToGlobal = function (x, y, pt) {
             return this.getConcatenatedMatrix().transformPoint(x, y, pt);
         };
-        DisplayObject.prototype.localToGlobalMatr = function (x, y) {
+        DisplayObject0.prototype.localToGlobalMatr = function (x, y) {
             return this.matrix.transformPoint(x, y);
         };
-        DisplayObject.prototype.getMatrix = function () {
+        DisplayObject0.prototype.getMatrix = function () {
             var o = this;
             var mtx = new Matrix2D();
             return mtx.appendTransform(o.x, o.y, o.scaleX, o.scaleY, o.rotation, o.skewX, o.skewY, o.regX, o.regY);
         };
-        return DisplayObject;
+        return DisplayObject0;
     })();
-    _view.DisplayObject = DisplayObject;
+    _view.DisplayObject0 = DisplayObject0;
     var MatrixVO = (function () {
         function MatrixVO() {
             this.a = 1;

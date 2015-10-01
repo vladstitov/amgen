@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <meta   name="viewport" content="target-densitydpi=device-dpi; width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <meta   name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
     <script type="text/javascript" src="../libs/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../libs/svg.min.js"></script>
@@ -90,13 +90,16 @@
 <body>
 <div id="Content" class="abs0">
     <style>
-        #Building{
+        .VP{
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 1000px;
             height: 1000px;
         }
     </style>
-    <div id="ViewPort" class="abs0">
-                <div id="Building" class="abs0" style="background-image:url('2m.png')" >
+    <div id="ViewPort" class="VP" >
+                <div id="Building" class="VP" style="background-image:url('2m.png')" >
 
                 </div>
     </div>
@@ -196,7 +199,9 @@
 </body>
 <script type="text/javascript" src="Tools.js"></script>
 <script type="text/javascript" src="TouchController3.js"></script>
-<script type="text/javascript" src="Matrix2D.js"></script>
-<script type="text/javascript" src="Renderer.js"></script>
+<script type="text/javascript" src="DisplaySimple.js"></script>
+<!--<script type="text/javascript" src="Matrix2D.js"></script>-->
+<!--<script type="text/javascript" src="Renderer.js"></script>-->
+<script type="text/javascript" src="Renderer3.js"></script>
 <script type="text/javascript" src="Test3.js"></script>
 </html>

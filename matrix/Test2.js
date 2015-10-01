@@ -21,7 +21,7 @@ var Test2 = (function () {
         this.total = 0;
         this.last = 0;
         this.count = 0;
-        this.building = new view.DisplayObject(document.getElementById('Building'), 'webkitTransform', 'webkitTransformOrigin');
+        this.building = new view.DisplayObject0(document.getElementById('Building'), 'webkitTransform', 'webkitTransformOrigin');
         this.building.drawCenter();
         var ar = [{ x: 100, y: 100 }, { x: 800, y: 100 }, { x: 800, y: 800 }, { x: 100, y: 800 }];
         for (var i = 0, n = ar.length; i < n; i++) {
@@ -29,7 +29,7 @@ var Test2 = (function () {
             $('<dot>').addClass('dot').text('x: ' + p.x + ' y: ' + p.y).css({ left: p.x, top: p.y }).appendTo(this.building.$view);
         }
         // this.viewPort = document.getElementById('ViewPort');
-        this.dots = new view.DisplayObject(document.getElementById('Dots'), 'webkitTransform', 'webkitTransformOrigin');
+        this.dots = new view.DisplayObject0(document.getElementById('Dots'), 'webkitTransform', 'webkitTransformOrigin');
         $('#Content').click(function (evt) { return _this.onViewPortClick(evt); });
         this.tools = new ui.Tools();
         this.tools.onChange = function () { return _this.onToolsChage(); };
@@ -60,7 +60,7 @@ var Test2 = (function () {
         this.curAng = this.tools.angle;
         this.curScale = this.tools.scale;
         this.building.setAngle(this.curAng);
-        this.building.setScale(this.curScale).applyRS();
+        this.building.setScale(this.curScale).apply();
         var p = this.building.localToGlobal(500, 500);
         // console.log(p);
         // this.dot100.css({left:p.x,top:p.y});

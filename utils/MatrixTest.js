@@ -7,7 +7,7 @@ var MatrixTest = (function () {
         var _this = this;
         this.current = 0;
         this.counter = 0;
-        var div = document.getElementById('Container');
+        var div = document.getElementById('Building');
         console.log(div.style);
         this.div = div;
         var prefixes = ['', '-moz-', '-webkit-', '-o-', '-ms-'];
@@ -31,7 +31,9 @@ var MatrixTest = (function () {
         var arr2 = [];
         var j = 0;
         for (var i = 0; i < 1000; i++) {
-            arr1.push(new Matrix().rotate(1, 1, i).scale(i / 1000, i / 1000, i).translate(1, 1) + '');
+            var m = new Matrix().rotate(1, 1, i).scale(i / 1000, i / 1000, i).translate(1, 1);
+            console.log(m);
+            arr1.push(m + '');
             arr2.push('rotateZ(' + i + 'deg).translate(' + i + 'px, ' + i + 'px)');
         }
         this.ar1 = arr1;
@@ -47,7 +49,7 @@ var MatrixTest = (function () {
             this.counter = 0;
             this.total = 0;
         }
-        console.log(this.current);
+        console.log(this.ar1[this.current]);
         this.div.style[this.transform] = this.ar1[this.current];
         this.current++;
         if (this.current < this.max)
