@@ -20,6 +20,7 @@ module view{
         center:JQuery;
         asMatrix:boolean = false;
         name:string;
+        onClick:Function;
 
       //  DEG_TO_RAD = Math.PI / 180;
 
@@ -44,25 +45,42 @@ module view{
             this.style = window.getComputedStyle(view,null);
 
         }
+        addClick(callBack:Function):void {
+            //this.onClick = callBack;
+            this.$view.click(callBack);
+        }
 
         children:JQuery[]=[];
         addChild(el:JQuery){
             this.children.push(el)
             this.$view.append(el);
         }
+
         drawCenter():void{
             this.center = $('<div>').addClass('dot center').appendTo(this.$view);
         }
 
+
+
         setCenter(x:number,y:number):DisplaySimple{
+            var p:Point = new Point;
             this.regX = x;
             this.regY = y;
+            this.posX = - this.regX;
+            this.posY = - this.regY;
+            //this.posX+=dx;
+           //console.log('this.posX: '+this.posX+'  this.posY: '+this.posY);
+          // console.log('this.regX: '+this.regX+'  this.regY: '+this.regY);
             if(this.center)this.center.css({left:x,top:y});
+            this.applyReg();
+            this.apply();
             return this;
         }
 
         applyReg():DisplaySimple{
             this.view.style[this.origin]=this.regX+'px '+this.regY+'px ';
+            this.apply();
+
             return this;
         }
 
@@ -85,7 +103,7 @@ module view{
             this.apply();
         }
 
-        setXY(x:number,y:number):void{
+        move(x:number,y:number):void{
             this.posX=x;
             this.posY=y;
             this.apply();
@@ -122,14 +140,28 @@ module view{
         }
 
         toGlobal(x:number, y:number):Point {
-        //console.log(this.regX,this.regY);
-            x=x-this.regX;
-            y=y-this.regY;
-        if(!this.ar) this.ar = this.readMatrixAr();
-        var ar:number[] = this.ar;
+            var rx:number=this.regX;
+            var ry:number=this.regY;
+            x=x-rx;
+            y=y-ry;
+            if(!this.ar) this.ar = this.readMatrixAr();
+            var ar:number[] = this.ar;
             var pt =  new Point();
-            pt.x = x * ar[0] + y * ar[2] + ar[4]+this.regX;
-            pt.y = x * ar[1] + y * ar[3] + ar[5]+this.regY;
+            pt.x = (x * ar[0]) + (y * ar[2]) + ar[4]+rx;
+            pt.y = (x * ar[1]) + (y * ar[3]) + ar[5]+ry;
+            return pt;
+        }
+
+        toLocal(a:number,b:number):Point{
+            var pt =  new Point();
+           // var rx:number=this.regX;
+           // var ry:number=this.regY;
+            if(!this.ar) this.ar = this.readMatrixAr();
+            var ar:number[] = this.ar;
+            pt.x=(b*ar[2]-a*ar[3]+ar[4]*ar[3]-ar[5]*ar[2])/(ar[1]*ar[2]-ar[0]*ar[3]);
+            pt.y=(b-pt.x*ar[1]-ar[5])/ar[3];
+
+
             return pt;
         }
 

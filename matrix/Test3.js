@@ -12,11 +12,24 @@ var Test3 = (function () {
     function Test3() {
         var _this = this;
         this.render = new Renderer3();
-        this.render.building.setCenter(500, 500);
+        this.render.building.drawCenter();
+        // this.render.setCenter(500,500);
+        //  this.render.viewPort.move(500,500);
+        this.render.viewPort.addClick(function (evt) {
+            console.log(evt);
+            // var x:number= evt.offsetX;
+            // var y:number = evt.offsetY;
+            var x = evt.clientX;
+            var y = evt.clientY;
+            console.log(x, y);
+            console.log(_this.render.building.toLocal(x, y));
+            //  this.render.building.setCenter(x,y);
+            // console.log(dp);
+        });
         this.render.building.applyReg();
         var tools = new ui.Tools();
         tools.onChange = function (angle, scale, skew) {
-            console.log(angle, scale);
+            // console.log(angle,scale);
             _this.render.building.setAS(angle, scale);
         };
         var ar = [{ x: 100, y: 100 }, { x: 800, y: 100 }, { x: 800, y: 800 }, { x: 100, y: 800 }];

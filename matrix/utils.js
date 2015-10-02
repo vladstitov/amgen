@@ -9,5 +9,11 @@ var view;
         return Point;
     })();
     view.Point = Point;
+    var DPoint = (function () {
+        function DPoint() {
+        }
+        return DPoint;
+    })();
+    view.DPoint = DPoint;
 })(view || (view = {}));
 //# sourceMappingURL=utils.js.map

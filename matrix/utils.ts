@@ -6,4 +6,8 @@ module view{
         x:number;
         y:number;
     }
+    export class DPoint{
+        dx:number;
+        dy:number;
+    }
 }

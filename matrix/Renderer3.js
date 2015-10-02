@@ -48,6 +48,11 @@ var Renderer3 = (function () {
         // this.setCenter(200,200);
         //this.onAnimationFrame(0);
     }
+    Renderer3.prototype.setCenter = function (x, y) {
+        this.posX = x;
+        this.posY = y;
+        this.building.setCenter(x, y);
+    };
     Renderer3.prototype.onGestStart = function () {
         // console.log(' onGestStart ');
         this.startAng = this.curAng;
@@ -158,7 +163,8 @@ var Renderer3 = (function () {
     Renderer3.prototype.render = function () {
         this.calcPosition();
         if (this.isPoz) {
-            this.viewPort.setXY(this.posX, this.posY);
+            //  this.building.setCenter(this.posX,this.posY);
+            this.viewPort.move(this.posX, this.posY);
         }
         if (this.isRS) {
             this.stopPos();

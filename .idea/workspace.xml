@@ -5,31 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19b6262a-e716-46ac-8b25-8dac8cd22c51" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplayContainer.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplayContainer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplayContainer.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplaySimple.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/DisplaySimple.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer2.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer2.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer3.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/utils.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/utils.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/utils.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Matrix4.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Renderer4.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/matrix/Test4.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/DisplaySimple.js.map" afterPath="$PROJECT_DIR$/matrix/DisplaySimple.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/DisplaySimple.js" afterPath="$PROJECT_DIR$/matrix/DisplaySimple.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/DisplaySimple.ts" afterPath="$PROJECT_DIR$/matrix/DisplaySimple.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Matrix2D.js.map" afterPath="$PROJECT_DIR$/matrix/Matrix2D.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Matrix2D.js" afterPath="$PROJECT_DIR$/matrix/Matrix2D.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Matrix2D.ts" afterPath="$PROJECT_DIR$/matrix/Matrix2D.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Matrix3.html" afterPath="$PROJECT_DIR$/matrix/Matrix3.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Renderer3.js.map" afterPath="$PROJECT_DIR$/matrix/Renderer3.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Renderer3.js" afterPath="$PROJECT_DIR$/matrix/Renderer3.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Renderer3.ts" afterPath="$PROJECT_DIR$/matrix/Renderer3.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Test3.js.map" afterPath="$PROJECT_DIR$/matrix/Test3.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Test3.js" afterPath="$PROJECT_DIR$/matrix/Test3.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Test3.ts" afterPath="$PROJECT_DIR$/matrix/Test3.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Tools.js.map" afterPath="$PROJECT_DIR$/matrix/Tools.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Tools.js" afterPath="$PROJECT_DIR$/matrix/Tools.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/Tools.ts" afterPath="$PROJECT_DIR$/matrix/Tools.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/utils.js.map" afterPath="$PROJECT_DIR$/matrix/utils.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/utils.js" afterPath="$PROJECT_DIR$/matrix/utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matrix/utils.ts" afterPath="$PROJECT_DIR$/matrix/utils.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="amgen.iws" />
@@ -51,11 +43,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Test3.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Test3.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/matrix/Test3.ts">
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.265625">
+              <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test4.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/matrix/Test4.ts">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+              <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -67,29 +71,27 @@
         <entry file="file://$PROJECT_DIR$/matrix/Renderer3.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Matrix3.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/matrix/Matrix3.html">
+      <file leaf-file-name="Renderer4.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/matrix/Renderer4.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.5">
-              <caret line="199" column="55" selection-start-line="199" selection-start-column="55" selection-end-line="199" selection-end-column="55" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="198" column="24" selection-start-line="198" selection-start-column="24" selection-end-line="198" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DisplaySimple.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DisplaySimple.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/matrix/DisplaySimple.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43509614">
-              <caret line="131" column="59" selection-start-line="131" selection-start-column="59" selection-end-line="131" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="161" column="44" selection-start-line="161" selection-start-column="44" selection-end-line="161" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -99,10 +101,33 @@
         <entry file="file://$PROJECT_DIR$/matrix/utils.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+              <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
               <folding>
                 <element signature="n#!!doc;n#view#0" expanded="false" />
+                <marker date="1443733998544" expanded="true" signature="143:188" placeholder="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Matrix3.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/matrix/Matrix3.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.076923">
+              <caret line="107" column="10" selection-start-line="107" selection-start-column="10" selection-end-line="107" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Matrix4.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/matrix/Matrix4.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-59.76923">
+              <caret line="194" column="9" selection-start-line="194" selection-start-column="9" selection-end-line="194" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,6 +146,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -162,10 +192,13 @@
         <option value="$PROJECT_DIR$/utils/MatrixTest.ts" />
         <option value="$PROJECT_DIR$/matrix/Renderer2.ts" />
         <option value="$PROJECT_DIR$/matrix/DisplayContainer.ts" />
-        <option value="$PROJECT_DIR$/matrix/utils.ts" />
         <option value="$PROJECT_DIR$/matrix/Matrix2D.ts" />
-        <option value="$PROJECT_DIR$/matrix/Matrix3.html" />
         <option value="$PROJECT_DIR$/matrix/Tools.ts" />
+        <option value="$PROJECT_DIR$/matrix/utils.ts" />
+        <option value="$PROJECT_DIR$/matrix/Matrix3.html" />
+        <option value="$PROJECT_DIR$/matrix/Matrix4.html" />
+        <option value="$PROJECT_DIR$/matrix/Test4.ts" />
+        <option value="$PROJECT_DIR$/matrix/Renderer4.ts" />
         <option value="$PROJECT_DIR$/matrix/Renderer3.ts" />
         <option value="$PROJECT_DIR$/matrix/Test3.ts" />
         <option value="$PROJECT_DIR$/matrix/DisplaySimple.ts" />
@@ -180,7 +213,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="16" />
+    <option name="x" value="15" />
+    <option name="y" value="19" />
     <option name="width" value="1900" />
     <option name="height" value="992" />
   </component>
@@ -223,20 +257,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="amgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="amgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="amgen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="matrix" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -319,11 +339,17 @@
       <option name="project" value="LOCAL" />
       <updated>1443719091800</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Display simple works fine">
+      <created>1443724280121</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1443724280121</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="16" y="0" width="1900" height="992" extended-state="0" />
+    <frame x="15" y="19" width="1900" height="992" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -334,7 +360,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24436091" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24436091" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329849" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -360,7 +386,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Display simple" />
-    <option name="LAST_COMMIT_MESSAGE" value="Display simple" />
+    <MESSAGE value="Display simple works fine" />
+    <option name="LAST_COMMIT_MESSAGE" value="Display simple works fine" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -369,35 +396,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/utils/Matrix.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="17" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/slider.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/test.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/mouseEvents.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/world.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -682,34 +680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/Matrix2D.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12259615">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/utils.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!doc;n#view#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/Matrix3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.5">
-          <caret line="199" column="55" selection-start-line="199" selection-start-column="55" selection-end-line="199" selection-end-column="55" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/matrix/Tools.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32572114">
@@ -718,28 +688,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/Renderer3.ts">
+    <entry file="file://$PROJECT_DIR$/matrix/utils.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc;n#view#0" expanded="false" />
+            <marker date="1443733998544" expanded="true" signature="143:188" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/Matrix3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.076923">
+          <caret line="107" column="10" selection-start-line="107" selection-start-column="10" selection-end-line="107" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/Matrix4.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-59.76923">
+          <caret line="194" column="9" selection-start-line="194" selection-start-column="9" selection-end-line="194" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/matrix/Test3.ts">
+    <entry file="file://$PROJECT_DIR$/matrix/Test4.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/Renderer4.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="198" column="24" selection-start-line="198" selection-start-column="24" selection-end-line="198" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/Renderer3.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/CSSMatrix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.63461536">
+          <caret line="325" column="56" selection-start-line="325" selection-start-column="56" selection-end-line="325" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/matrix/DisplaySimple.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43509614">
-          <caret line="131" column="59" selection-start-line="131" selection-start-column="59" selection-end-line="131" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="161" column="44" selection-start-line="161" selection-start-column="44" selection-end-line="161" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/Test3.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.265625">
+          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix/Matrix2D.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.69350964">
+          <caret line="205" column="39" selection-start-line="205" selection-start-column="39" selection-end-line="205" selection-end-column="39" />
           <folding />
         </state>
       </provider>

@@ -5,43 +5,39 @@
 ///<reference path="TouchController3.ts" />
 ///<reference path="Renderer.ts" />
 ///<reference path="Renderer3.ts" />
+///<reference path="Renderer4.ts" />
 ///<reference path="DisplayContainer.ts" />
 ///<reference path="DisplaySimple.ts" />
 ///<reference path="utils.ts" />
 
 
-class Test3{
+class Test4{
 
-     render:Renderer3
+     render:Renderer4
     constructor(){
-        this.render = new Renderer3();
+        this.render = new Renderer4();
         this.render.building.drawCenter();
 
-     // this.render.setCenter(500,500);
-      //  this.render.viewPort.move(500,500);
-
+      this.render.setCenter(500,500);
+        this.render.viewPort.move(500,500);
+        /*
         this.render.viewPort.addClick((evt)=>{
-           console.log(evt);
-           // var x:number= evt.offsetX;
-           // var y:number = evt.offsetY;
-            var x:number= evt.clientX;
-            var y:number = evt.clientY;
-            console.log(x,y);
-            console.log(this.render.building.toLocal(x,y));
+         //   console.log(evt);
+            var x:number= evt.offsetX;
+            var y:number = evt.offsetY;
 
-
-        //  this.render.building.setCenter(x,y);
+          // var dp:view.DPoint =  this.render.building.setCenter(x,y);
            // console.log(dp);
 
         })
-
+*/
         this.render.building.applyReg();
 
 
 
         var tools:ui.Tools = new ui.Tools();
         tools.onChange=(angle,scale,skew)=>{
-           // console.log(angle,scale);
+            console.log(angle,scale);
             this.render.building.setAS(angle,scale)
         }
 
@@ -72,4 +68,4 @@ class Test3{
 
 
 
-$(document).ready(function(){var test = new Test3();})
+$(document).ready(function(){var test = new Test4();})

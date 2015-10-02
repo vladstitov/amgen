@@ -178,7 +178,7 @@ var view;
         };
         Matrix2D.prototype.transformPoint = function (x, y, pt) {
             var vo = this.vo;
-            pt = pt || new view.Point();
+            pt = pt || new Point();
             pt.x = x * vo.a + y * vo.c + vo.tx;
             pt.y = x * vo.b + y * vo.d + vo.ty;
             return pt;

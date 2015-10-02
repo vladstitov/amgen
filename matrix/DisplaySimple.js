@@ -26,6 +26,10 @@ var view;
             this.origin = origin;
             this.style = window.getComputedStyle(view, null);
         }
+        DisplaySimple.prototype.addClick = function (callBack) {
+            //this.onClick = callBack;
+            this.$view.click(callBack);
+        };
         DisplaySimple.prototype.addChild = function (el) {
             this.children.push(el);
             this.$view.append(el);
@@ -34,14 +38,23 @@ var view;
             this.center = $('<div>').addClass('dot center').appendTo(this.$view);
         };
         DisplaySimple.prototype.setCenter = function (x, y) {
+            var p = new _view.Point;
             this.regX = x;
             this.regY = y;
+            this.posX = -this.regX;
+            this.posY = -this.regY;
+            //this.posX+=dx;
+            //console.log('this.posX: '+this.posX+'  this.posY: '+this.posY);
+            // console.log('this.regX: '+this.regX+'  this.regY: '+this.regY);
             if (this.center)
                 this.center.css({ left: x, top: y });
+            this.applyReg();
+            this.apply();
             return this;
         };
         DisplaySimple.prototype.applyReg = function () {
             this.view.style[this.origin] = this.regX + 'px ' + this.regY + 'px ';
+            this.apply();
             return this;
         };
         DisplaySimple.prototype.setAngle = function (ang) {
@@ -60,7 +73,7 @@ var view;
             this.angle = a;
             this.apply();
         };
-        DisplaySimple.prototype.setXY = function (x, y) {
+        DisplaySimple.prototype.move = function (x, y) {
             this.posX = x;
             this.posY = y;
             this.apply();
@@ -93,15 +106,27 @@ var view;
             // return this.mCache
         };
         DisplaySimple.prototype.toGlobal = function (x, y) {
-            //console.log(this.regX,this.regY);
-            x = x - this.regX;
-            y = y - this.regY;
+            var rx = this.regX;
+            var ry = this.regY;
+            x = x - rx;
+            y = y - ry;
             if (!this.ar)
                 this.ar = this.readMatrixAr();
             var ar = this.ar;
             var pt = new _view.Point();
-            pt.x = x * ar[0] + y * ar[2] + ar[4] + this.regX;
-            pt.y = x * ar[1] + y * ar[3] + ar[5] + this.regY;
+            pt.x = (x * ar[0]) + (y * ar[2]) + ar[4] + rx;
+            pt.y = (x * ar[1]) + (y * ar[3]) + ar[5] + ry;
+            return pt;
+        };
+        DisplaySimple.prototype.toLocal = function (a, b) {
+            var pt = new _view.Point();
+            // var rx:number=this.regX;
+            // var ry:number=this.regY;
+            if (!this.ar)
+                this.ar = this.readMatrixAr();
+            var ar = this.ar;
+            pt.x = (b * ar[2] - a * ar[3] + ar[4] * ar[3] - ar[5] * ar[2]) / (ar[1] * ar[2] - ar[0] * ar[3]);
+            pt.y = (b - pt.x * ar[1] - ar[5]) / ar[3];
             return pt;
         };
         return DisplaySimple;

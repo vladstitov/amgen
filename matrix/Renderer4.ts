@@ -6,7 +6,7 @@
  */
 
 ///<reference path="Test3.ts" />
-class Renderer3{
+class Renderer4{
     private prefixedTransform:string ='webkitTransform';
     // viewPort:HTMLElement;
     posX:number=0;
@@ -197,8 +197,8 @@ class Renderer3{
     }
 
     calcPosition():void{
-        var gx =this.startX+this.touch.DX;
-        var gy=this.startY+this.touch.DY;
+        var gx =this.startX-this.touch.DX;
+        var gy=this.startY-this.touch.DY;
         var dx = gx-this.posX;
         var dy = gy-this.posY;
         if(Math.sqrt((dx*dx) + (dy*dy))<0.1){
@@ -214,8 +214,8 @@ class Renderer3{
     render():void{
         this.calcPosition();
         if(this.isPoz){
-          //  this.building.setCenter(this.posX,this.posY);
-         this.viewPort.move(this.posX,this.posY);
+            this.building.setCenter(this.posX,this.posY);
+        // this.viewPort.move(this.posX,this.posY);
            // if(this.swap)this.buildingEl.style[this.prefixedTransform]= 'translate('+this.posX+'px,'+this.posY+'px) rotate(0) scale(1) translateZ(0)';
            // else  this.viewPortEl.style[this.prefixedTransform]= 'translate('+this.posX+'px,'+this.posY+'px) rotate(0) scale(1) translateZ(0)';
         }
